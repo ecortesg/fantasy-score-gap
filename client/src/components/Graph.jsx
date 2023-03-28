@@ -44,10 +44,10 @@ function Graph({ data }) {
   const renderLegend = (props) => {
     const { payload } = props;
     return (
-      <ul className="grid grid-cols-6 mt-5 gap-1 text-sm content-center">
+      <ul className="grid grid-cols-6 mt-5 gap-1 text-sm">
         {payload.map((entry, index) => (
           <li
-            className="grid text-center md:flex"
+            className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
             key={`item-${index}`}
             style={{ color: entry.color }}
           >
@@ -56,7 +56,7 @@ function Graph({ data }) {
               type="checkbox"
               checked={!hideLine[entry.value]}
               onChange={onClickLegend}
-              className="mx-1"
+              className="w-[13px] h-5"
             />
             <label htmlFor={entry.value}>{entry.value}</label>
           </li>
@@ -101,7 +101,6 @@ function Graph({ data }) {
         />
         <Tooltip />
         <Legend
-          layout="vertical"
           align="center"
           verticalAlign="bottom"
           content={renderLegend}
