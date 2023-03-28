@@ -12,7 +12,13 @@ import {
 function Diagram({ data }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <RadarChart cx="50%" cy="50%" outerRadius="75%" data={data}>
+      <RadarChart
+        cx="50%"
+        cy="50%"
+        outerRadius="75%"
+        data={data}
+        margin={{ bottom: 15 }}
+      >
         <PolarGrid />
         <PolarAngleAxis dataKey="position" />
         <PolarRadiusAxis
