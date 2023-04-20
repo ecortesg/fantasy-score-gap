@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
-import { SLEEPER } from "./components/presets_data";
+import { SLEEPER } from "./data/presets_data";
 
 function App() {
   const defaultSeason = "2022";

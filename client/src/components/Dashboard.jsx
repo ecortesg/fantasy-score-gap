@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStats } from "../api/stats";
+import { getStatistics } from "../api/statistics";
 import { useDashboardData } from "./useDashboardData";
 import Table from "./Table";
 import Graph from "./Graph";
@@ -8,7 +8,7 @@ import Diagram from "./Diagram";
 function Dashboard({ season, valuesLeague1, valuesLeague2 }) {
   const statsQuery = useQuery({
     queryKey: ["stats", season],
-    queryFn: () => getStats(season),
+    queryFn: () => getStatistics(season),
   });
 
   if (statsQuery.status === "loading")

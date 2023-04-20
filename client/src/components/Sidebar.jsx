@@ -2,7 +2,7 @@ import { useMultipageForm } from "./useMultipageForm";
 import CategoryLink from "./CategoryLink";
 import Root from "./Root";
 import SettingsPage from "./SettingsPage";
-import { SLEEPER, ESPN, YAHOO } from "./presets_data";
+import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
 import {
   PASSING,
   RUSHING,
@@ -13,7 +13,7 @@ import {
   SPECIAL_TEAMS_PLAYER,
   MISC,
   BONUS,
-} from "./fields_data";
+} from "../data/fields_data";
 import { IoMdArrowBack } from "react-icons/io";
 import PresetButton from "./PresetButton";
 

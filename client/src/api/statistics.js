@@ -4,7 +4,7 @@ const statsApi = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
-export async function getStats(season) {
-  const res = await statsApi.get(`/stats/nfl/${season}`);
+export async function getStatistics(season) {
+  const res = await statsApi.get(`/statistics/nfl/${season}`);
   return res.data;
 };
