@@ -1,4 +1,4 @@
-export function useDashboardData(stats, valuesLeague1, valuesLeague2) {
+export function dashboardData(stats, valuesLeague1, valuesLeague2) {
   function getPositionalRank(sortedData, league) {
     let pos_counter = {};
     const fpts_rank = sortedData.map((elem, index) => {

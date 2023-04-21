@@ -1,4 +1,4 @@
-import { useMultipageForm } from "./useMultipageForm";
+import { useMultipageForm } from "../hooks/useMultipageForm";
 import CategoryLink from "./CategoryLink";
 import Root from "./Root";
 import SettingsPage from "./SettingsPage";

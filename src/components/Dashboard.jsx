@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getStatistics } from "../api/statistics";
-import { useDashboardData } from "./useDashboardData";
+import { dashboardData } from "./dashboardData";
 import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
@@ -17,7 +17,7 @@ function Dashboard({ season, valuesLeague1, valuesLeague2 }) {
     return <p className="p-5">{JSON.stringify(statsQuery.error)}</p>;
   }
 
-  const { fpts, fpts_rank, fpts_avg } = useDashboardData(
+  const { fpts, fpts_rank, fpts_avg } = dashboardData(
     statsQuery.data,
     valuesLeague1,
     valuesLeague2
