@@ -11,7 +11,7 @@ function Table({ data }) {
   const [sorting, setSorting] = useState([]);
   const columnHelper = createColumnHelper();
   const columns = [
-    columnHelper.accessor((row) => row.player_name, {
+    columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
       id: "player",
       header: "Player",
     }),
