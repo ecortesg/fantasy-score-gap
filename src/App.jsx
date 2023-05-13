@@ -29,14 +29,14 @@ function App() {
   }
 
   return (
-    <div className="grid min-h-screen grid-rows-[48px_auto] bg-slate-200">
-      <div className="shadow-sm z-10">
+    <main className="grid min-h-screen grid-rows-[48px_auto] bg-slate-200">
+      <section className="shadow-sm z-10">
         <Navbar
           openSidebar={openSidebar}
           onIconClick={() => setOpenSidebar((prev) => !prev)}
         />
-      </div>
-      <div className="grid lg:grid-cols-[300px_auto]">
+      </section>
+      <section className="grid lg:grid-cols-[300px_auto]">
         <Sidebar
           season={season}
           updateSeason={updateSeason}
@@ -51,8 +51,8 @@ function App() {
           valuesLeague1={valuesLeague1}
           valuesLeague2={valuesLeague2}
         />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getStatistics } from "../api/statistics";
-import { dashboardData } from "./dashboardData";
+import { dashboardData } from "../dashboardData";
 import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
