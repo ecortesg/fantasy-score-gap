@@ -18,8 +18,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import PresetButton from "./PresetButton";
 
 function Sidebar({
-  season,
-  updateSeason,
+  dataFilters,
+  updateDataFilters,
   openSidebar,
   valuesLeague1,
   valuesLeague2,
@@ -27,7 +27,9 @@ function Sidebar({
   updateValuesLeague2,
 }) {
   const { tab, goTo, isRoot } = useMultipageForm({
-    root: <Root season={season} updateSeason={updateSeason} />,
+    root: (
+      <Root dataFilters={dataFilters} updateDataFilters={updateDataFilters} />
+    ),
     passing: (
       <SettingsPage
         title="Passing"

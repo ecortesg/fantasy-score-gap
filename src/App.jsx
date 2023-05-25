@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
@@ -6,14 +6,16 @@ import { SLEEPER } from "./data/presets_data";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const defaultSeason = "2022";
-  const [season, setSeason] = useState(defaultSeason);
+  const defaultDataFilters = { season: "2022", week: "season" };
+  const [dataFilters, setDataFilters] = useState(defaultDataFilters);
   const [openSidebar, setOpenSidebar] = useState(false);
   const [valuesLeague1, setValuesLeague1] = useLocalStorage("league1", SLEEPER);
   const [valuesLeague2, setValuesLeague2] = useLocalStorage("league2", SLEEPER);
 
-  function updateSeason(e) {
-    setSeason(e.target.value);
+  function updateDataFilters(newValues) {
+    setDataFilters((prevValues) => {
+      return { ...prevValues, ...newValues };
+    });
   }
 
   function updateValuesLeague1(newValues) {
@@ -38,8 +40,8 @@ function App() {
       </section>
       <section className="grid lg:grid-cols-[300px_auto]">
         <Sidebar
-          season={season}
-          updateSeason={updateSeason}
+          dataFilters={dataFilters}
+          updateDataFilters={updateDataFilters}
           openSidebar={openSidebar}
           valuesLeague1={valuesLeague1}
           valuesLeague2={valuesLeague2}
@@ -47,7 +49,7 @@ function App() {
           updateValuesLeague2={updateValuesLeague2}
         />
         <Dashboard
-          season={season}
+          dataFilters={dataFilters}
           valuesLeague1={valuesLeague1}
           valuesLeague2={valuesLeague2}
         />

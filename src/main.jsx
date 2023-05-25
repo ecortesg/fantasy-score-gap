@@ -8,7 +8,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // Comment StrictMode to test localstorage
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <App />

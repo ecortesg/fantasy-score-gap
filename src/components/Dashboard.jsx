@@ -5,16 +5,25 @@ import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
 
-function Dashboard({ season, valuesLeague1, valuesLeague2 }) {
+function Dashboard({ dataFilters, valuesLeague1, valuesLeague2 }) {
   const statsQuery = useQuery({
-    queryKey: ["stats", season],
-    queryFn: () => getStatistics(season),
+    queryKey: ["stats", dataFilters],
+    queryFn: () => getStatistics(dataFilters),
   });
 
   if (statsQuery.status === "loading")
     return <h1 className="text-center text-lg font-bold p-5">Loading...</h1>;
   if (statsQuery.status === "error") {
     return <p className="p-5">{JSON.stringify(statsQuery.error)}</p>;
+  }
+  if (statsQuery.data.length === 0) {
+    return (
+      <h1 className="text-center text-lg font-bold p-5">
+        No data
+        <br />
+        Please select another season or week
+      </h1>
+    );
   }
 
   const { fpts, fpts_rank, fpts_avg } = dashboardData(
