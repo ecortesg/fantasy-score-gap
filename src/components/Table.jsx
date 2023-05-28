@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 
 function Table({ data }) {
   const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+
   const columnHelper = createColumnHelper();
   const columns = [
     columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
@@ -60,61 +63,148 @@ function Table({ data }) {
       ],
     }),
   ];
+
   const table = useReactTable({
     data,
     columns,
-    state: { sorting },
+    state: { sorting, columnFilters },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
+  const playerColumn = table.getColumn("player");
+  const positionColumn = table.getColumn("position");
+
+  function handlePositionChange(value) {
+    positionColumn.setFilterValue(value);
+  }
+
+  function handlePlayerChange(value) {
+    playerColumn.setFilterValue(value);
+  }
+
   return (
-    <div className="px-5 pb-5">
-      <table className="w-full table-auto">
-        <thead className="border-b sticky top-0 bg-white">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} colSpan={header.colSpan}>
-                  {header.isPlaceholder ? null : (
-                    <div
-                      {...{
-                        className: header.column.getCanSort()
-                          ? "cursor-pointer select-none p-1"
-                          : "border-b border-black mx-1 p-1",
-                        onClick: header.column.getToggleSortingHandler(),
-                      }}
-                    >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {{
-                        asc: " ↑",
-                        desc: " ↓",
-                      }[header.column.getIsSorted()] ?? null}
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className="overflow-y-auto">
-          {table.getRowModel().rows.map((row) => (
-            <tr className="border-b hover:bg-slate-100" key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td className="whitespace-nowrap px-2" key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="p-5 h-full">
+      <div className="flex md:flex-row flex-col md:gap-6 gap-4 items-center h-1/4">
+        <PlayerFilter
+          column={playerColumn}
+          handlePlayerChange={handlePlayerChange}
+        />
+        <PositionFilter handlePositionChange={handlePositionChange} />
+      </div>
+      <div className="overflow-x-auto h-3/4">
+        <table className="table-auto w-full">
+          <thead className="border-b sticky top-0 bg-white whitespace-nowrap">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} colSpan={header.colSpan}>
+                    {header.isPlaceholder ? null : (
+                      <div
+                        {...{
+                          className: header.column.getCanSort()
+                            ? "cursor-pointer select-none p-1"
+                            : "border-b border-black mx-1 p-1",
+                          onClick: header.column.getToggleSortingHandler(),
+                        }}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {{
+                          asc: " ↑",
+                          desc: " ↓",
+                        }[header.column.getIsSorted()] ?? null}
+                      </div>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody className="overflow-auto">
+            {table.getRowModel().rows.map((row) => (
+              <tr className="border-b hover:bg-slate-100" key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td className="whitespace-nowrap px-2" key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
 
 export default Table;
+
+function PositionFilter({ handlePositionChange }) {
+  const positions = ["QB", "RB", "WR", "TE", "K", "DEF"];
+
+  return (
+    <div
+      className="flex gap-2 shrink-0"
+      onChange={(e) => handlePositionChange(e.target.value)}
+    >
+      <div key="ALL">
+        <input
+          type="radio"
+          id="ALL"
+          name="position"
+          value=""
+          defaultChecked={true}
+          className="mx-1"
+        ></input>
+        <label htmlFor="ALL">ALL</label>
+      </div>
+      {positions.map((pos) => {
+        return (
+          <div key={pos}>
+            <input
+              type="radio"
+              id={pos}
+              name="position"
+              value={pos}
+              className="mx-1"
+            ></input>
+            <label htmlFor={pos}>{pos}</label>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
+  const columnFilterValue = column.getFilterValue() ?? "";
+  const [value, setValue] = useState(columnFilterValue);
+
+  useEffect(() => {
+    setValue(columnFilterValue);
+  }, [columnFilterValue]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handlePlayerChange(value);
+    }, debounce);
+
+    return () => clearTimeout(timeout);
+  }, [value]);
+
+  return (
+    <input
+      className="border rounded px-2 py-1 shadow"
+      type="text"
+      placeholder="Find player"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}

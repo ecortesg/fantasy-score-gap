@@ -40,7 +40,7 @@ function Dashboard({ dataFilters, valuesLeague1, valuesLeague2 }) {
       <div className="bg-white lg:col-span-3 rounded-lg shadow-lg h-[450px]">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white lg:col-span-12 rounded-lg shadow-lg max-h-[500px] overflow-y-scroll">
+      <div className="bg-white lg:col-span-12 rounded-lg shadow-lg h-[500px]">
         <Table data={fpts} />
       </div>
     </div>
