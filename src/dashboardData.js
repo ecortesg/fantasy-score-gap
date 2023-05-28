@@ -50,7 +50,7 @@ export function dashboardData(stats, valuesLeague1, valuesLeague2) {
         .map((obj) => obj.fpts_per_game1);
 
       const avg1 = Number(
-        (scores1.reduce((a, b) => a + b, 0) / scores1.length).toFixed(2)
+        (scores1.reduce((a, b) => a + b, 0) / scores1.length).toFixed(1)
       );
 
       const scores2 = rankings
@@ -62,7 +62,7 @@ export function dashboardData(stats, valuesLeague1, valuesLeague2) {
         .map((obj) => obj.fpts_per_game2);
 
       const avg2 = Number(
-        (scores2.reduce((a, b) => a + b, 0) / scores2.length).toFixed(2)
+        (scores2.reduce((a, b) => a + b, 0) / scores2.length).toFixed(1)
       );
 
       fpts_avg.push({
@@ -83,10 +83,10 @@ export function dashboardData(stats, valuesLeague1, valuesLeague2) {
         fpts2 += Number(elem.stats[key]) * Number(valuesLeague2[key]);
       }
     }
-    fpts1 = Number(fpts1.toFixed(2));
-    fpts2 = Number(fpts2.toFixed(2));
-    const fpts_per_game1 = Number((fpts1 / elem.stats.gp).toFixed(2));
-    const fpts_per_game2 = Number((fpts2 / elem.stats.gp).toFixed(2));
+    fpts1 = Number(fpts1.toFixed(1));
+    fpts2 = Number(fpts2.toFixed(1));
+    const fpts_per_game1 = Number((fpts1 / elem.stats.gp).toFixed(1));
+    const fpts_per_game2 = Number((fpts2 / elem.stats.gp).toFixed(1));
 
     return { ...elem, fpts1, fpts2, fpts_per_game1, fpts_per_game2 };
   });
