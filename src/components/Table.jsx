@@ -24,37 +24,37 @@ function Table({ data }) {
       header: "Games",
     }),
     columnHelper.group({
-      id: "league-1",
+      id: "league_1",
       header: "League 1",
       columns: [
         columnHelper.accessor("rank1", {
-          id: "rank1",
           header: "Rank",
         }),
+        columnHelper.accessor("position_rank1", {
+          header: "Pos Rank",
+        }),
         columnHelper.accessor("fpts1", {
-          id: "fpts1",
           header: "FPts",
         }),
         columnHelper.accessor("fpts_per_game1", {
-          id: "fpts_per_game1",
           header: "FPts/Game",
         }),
       ],
     }),
     columnHelper.group({
-      id: "league-2",
+      id: "league_2",
       header: "League 2",
       columns: [
         columnHelper.accessor("rank2", {
-          id: "rank2",
           header: "Rank",
         }),
+        columnHelper.accessor("position_rank2", {
+          header: "Pos Rank",
+        }),
         columnHelper.accessor("fpts2", {
-          id: "fpts2",
           header: "FPts",
         }),
         columnHelper.accessor("fpts_per_game2", {
-          id: "fpts_per_game2",
           header: "FPts/Game",
         }),
       ],
