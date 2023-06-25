@@ -1,6 +1,6 @@
 # Fantasy Score Gap
 
-<a href="https://fantasy-score-gap.vercel.app/"> Live Site </a>
+[Live Site](https://fantasy-score-gap.vercel.app/){:target="\_blank"}
 
 Interactive dashboard to compare different scoring settings in Fantasy Football.<br/>
 Find the format with the right positional balance for your league.
@@ -9,8 +9,18 @@ Find the format with the right positional balance for your league.
 
 ## Tech Stack
 
+### Frontend
 - React
+- TanStack Query
+- TanStack Table
+- Recharts
+- Zustand
+- Tailwind CSS
+
+### Backend
 - Node.js
 - Express
+- Mongoose
 - MongoDB
-- Tailwind CSS
+
+[Backend Repo](https://github.com/ecortesg/fantasy-api){:target="\_blank"}

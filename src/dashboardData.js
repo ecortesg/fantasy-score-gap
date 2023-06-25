@@ -1,4 +1,4 @@
-export function dashboardData(stats, valuesLeague1, valuesLeague2) {
+export function dashboardData(stats, settingsLeague1, settingsLeague2) {
   function getPositionalRank(sortedData, league) {
     let pos_counter = {};
     const fpts_rank = sortedData.map((elem, index) => {
@@ -78,9 +78,9 @@ export function dashboardData(stats, valuesLeague1, valuesLeague2) {
     let fpts1 = 0;
     let fpts2 = 0;
     for (const key in elem.stats) {
-      if (key in valuesLeague1) {
-        fpts1 += Number(elem.stats[key]) * valuesLeague1[key];
-        fpts2 += Number(elem.stats[key]) * valuesLeague2[key];
+      if (key in settingsLeague1) {
+        fpts1 += Number(elem.stats[key]) * settingsLeague1[key];
+        fpts2 += Number(elem.stats[key]) * settingsLeague2[key];
       }
     }
     fpts1 = Number(fpts1.toFixed(1));
