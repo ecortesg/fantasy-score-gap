@@ -79,8 +79,8 @@ export function dashboardData(stats, valuesLeague1, valuesLeague2) {
     let fpts2 = 0;
     for (const key in elem.stats) {
       if (key in valuesLeague1) {
-        fpts1 += Number(elem.stats[key]) * Number(valuesLeague1[key]);
-        fpts2 += Number(elem.stats[key]) * Number(valuesLeague2[key]);
+        fpts1 += Number(elem.stats[key]) * valuesLeague1[key];
+        fpts2 += Number(elem.stats[key]) * valuesLeague2[key];
       }
     }
     fpts1 = Number(fpts1.toFixed(1));

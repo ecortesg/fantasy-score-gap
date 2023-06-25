@@ -1,4 +1,12 @@
-function Root({ dataFilters, updateDataFilters }) {
+import { useQueryFiltersStore } from "../store/queryFiltersStore";
+import { shallow } from "zustand/shallow";
+
+function Root() {
+  const [queryFilters, updateQueryFilters] = useQueryFiltersStore(
+    (state) => [state.queryFilters, state.updateQueryFilters],
+    shallow
+  );
+
   return (
     <>
       <h2 className="text-center text-lg font-bold">Settings</h2>
@@ -6,8 +14,10 @@ function Root({ dataFilters, updateDataFilters }) {
         <select
           name="season"
           id="season"
-          value={dataFilters.season}
-          onChange={(e) => updateDataFilters({ [e.target.id]: e.target.value })}
+          value={queryFilters.season}
+          onChange={(e) =>
+            updateQueryFilters({ [e.target.id]: e.target.value })
+          }
           className="border rounded shadow"
         >
           <option value="2022">2022</option>
@@ -17,8 +27,10 @@ function Root({ dataFilters, updateDataFilters }) {
         <select
           name="week"
           id="week"
-          value={dataFilters.week}
-          onChange={(e) => updateDataFilters({ [e.target.id]: e.target.value })}
+          value={queryFilters.week}
+          onChange={(e) =>
+            updateQueryFilters({ [e.target.id]: e.target.value })
+          }
           className="border rounded shadow"
         >
           <option value="season">Season</option>

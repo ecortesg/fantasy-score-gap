@@ -1,11 +1,16 @@
-function SettingsPage({
-  title,
-  fields,
-  valuesLeague1,
-  valuesLeague2,
-  updateValuesLeague1,
-  updateValuesLeague2,
-}) {
+import { useLeague1Store, useLeague2Store } from "../store/settingsStore";
+
+function SettingsPage({ title, fields }) {
+  const [settings1, updateSettings1] = useLeague1Store((state) => [
+    state.settings,
+    state.updateSettings,
+  ]);
+
+  const [settings2, updateSettings2] = useLeague2Store((state) => [
+    state.settings,
+    state.updateSettings,
+  ]);
+
   return (
     <>
       <h2 className="text-lg font-bold text-center mb-5">{title}</h2>
@@ -25,18 +30,18 @@ function SettingsPage({
               <input
                 id={field.id}
                 type="number"
-                value={valuesLeague1[field.id]}
+                value={settings1[field.id]}
                 onChange={(e) =>
-                  updateValuesLeague1({ [e.target.id]: e.target.value })
+                  updateSettings1({ [e.target.id]: Number(e.target.value) })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
               <input
                 id={field.id}
                 type="number"
-                value={valuesLeague2[field.id]}
+                value={settings2[field.id]}
                 onChange={(e) =>
-                  updateValuesLeague2({ [e.target.id]: e.target.value })
+                  updateSettings2({ [e.target.id]: Number(e.target.value) })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
               />

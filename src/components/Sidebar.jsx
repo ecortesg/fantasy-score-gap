@@ -18,8 +18,6 @@ import { IoMdArrowBack } from "react-icons/io";
 import PresetButton from "./PresetButton";
 
 function Sidebar({
-  dataFilters,
-  updateDataFilters,
   openSidebar,
   valuesLeague1,
   valuesLeague2,
@@ -27,99 +25,23 @@ function Sidebar({
   updateValuesLeague2,
 }) {
   const { tab, goTo, isRoot } = useMultipageForm({
-    root: (
-      <Root dataFilters={dataFilters} updateDataFilters={updateDataFilters} />
-    ),
-    passing: (
-      <SettingsPage
-        title="Passing"
-        fields={PASSING}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
-    rushing: (
-      <SettingsPage
-        title="Rushing"
-        fields={RUSHING}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
-    receiving: (
-      <SettingsPage
-        title="Receiving"
-        fields={RECEIVING}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
-    kicking: (
-      <SettingsPage
-        title="Kicking"
-        fields={KICKING}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
-    defense: (
-      <SettingsPage
-        title="Defense"
-        fields={DEFENSE}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
+    root: <Root />,
+    passing: <SettingsPage title="Passing" fields={PASSING} />,
+    rushing: <SettingsPage title="Rushing" fields={RUSHING} />,
+    receiving: <SettingsPage title="Receiving" fields={RECEIVING} />,
+    kicking: <SettingsPage title="Kicking" fields={KICKING} />,
+    defense: <SettingsPage title="Defense" fields={DEFENSE} />,
     special_teams: (
-      <SettingsPage
-        title="Special Teams"
-        fields={SPECIAL_TEAMS}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
+      <SettingsPage title="Special Teams" fields={SPECIAL_TEAMS} />
     ),
     special_teams_player: (
       <SettingsPage
         title="Special Teams Player"
         fields={SPECIAL_TEAMS_PLAYER}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
       />
     ),
-    misc: (
-      <SettingsPage
-        title="Misc"
-        fields={MISC}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
-    bonus: (
-      <SettingsPage
-        title="Bonus"
-        fields={BONUS}
-        valuesLeague1={valuesLeague1}
-        valuesLeague2={valuesLeague2}
-        updateValuesLeague1={updateValuesLeague1}
-        updateValuesLeague2={updateValuesLeague2}
-      />
-    ),
+    misc: <SettingsPage title="Misc" fields={MISC} />,
+    bonus: <SettingsPage title="Bonus" fields={BONUS} />,
   });
 
   return (
