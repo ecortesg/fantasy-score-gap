@@ -4,11 +4,11 @@ const statsApi = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
-export async function getStatistics(dataFilters) {
+export async function getStatistics(queryFilters) {
   const url =
-    dataFilters.week === "season"
-      ? `/statistics/nfl/${dataFilters.season}`
-      : `/statistics/nfl/${dataFilters.season}/${dataFilters.week}`;
+    queryFilters.week === "season"
+      ? `/statistics/nfl/${queryFilters.season}`
+      : `/statistics/nfl/${queryFilters.season}/${queryFilters.week}`;
   const res = await statsApi.get(url);
   return res.data;
 }

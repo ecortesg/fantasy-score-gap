@@ -4,11 +4,19 @@ import { dashboardData } from "../dashboardData";
 import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
+import { useQueryFiltersStore } from "../store/queryFiltersStore";
+import { useLeague1Store, useLeague2Store } from "../store/settingsStore";
 
-function Dashboard({ dataFilters, valuesLeague1, valuesLeague2 }) {
+function Dashboard() {
+  const queryFilters = useQueryFiltersStore((state) => state.queryFilters);
+
+  const settingsLeague1 = useLeague1Store((state) => state.settings);
+
+  const settingsLeague2 = useLeague2Store((state) => state.settings);
+
   const statsQuery = useQuery({
-    queryKey: ["stats", dataFilters],
-    queryFn: () => getStatistics(dataFilters),
+    queryKey: ["stats", queryFilters],
+    queryFn: () => getStatistics(queryFilters),
   });
 
   if (statsQuery.status === "loading")
@@ -28,8 +36,8 @@ function Dashboard({ dataFilters, valuesLeague1, valuesLeague2 }) {
 
   const { fpts, fpts_rank, fpts_avg } = dashboardData(
     statsQuery.data,
-    valuesLeague1,
-    valuesLeague2
+    settingsLeague1,
+    settingsLeague2
   );
 
   return (
