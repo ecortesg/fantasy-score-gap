@@ -5,7 +5,8 @@ import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
-import { useLeague1Store, useLeague2Store } from "../store/settingsStore";
+import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 function Dashboard() {
   const queryFilters = useQueryFiltersStore((state) => state.queryFilters);
@@ -19,8 +20,8 @@ function Dashboard() {
     queryFn: () => getStatistics(queryFilters),
   });
 
-  if (statsQuery.status === "loading")
-    return <h1 className="text-center text-lg font-bold p-5">Loading...</h1>;
+  if (statsQuery.status === "loading") return <LoadingSpinner />;
+
   if (statsQuery.status === "error") {
     return <p className="p-5">{JSON.stringify(statsQuery.error)}</p>;
   }
@@ -29,7 +30,7 @@ function Dashboard() {
       <h1 className="text-center text-lg font-bold p-5">
         No data
         <br />
-        Please select another season or week
+        Please select another week or season
       </h1>
     );
   }

@@ -18,9 +18,11 @@ Find the format with the right positional balance for your league.
 - Zustand
 - Tailwind CSS
 
-### Backend - [Repo](https://github.com/ecortesg/fantasy-api)
+### Backend → [Repo](https://github.com/ecortesg/fantasy-api)
 
 - Node.js
 - Express
 - Mongoose
+
+### Database
 - MongoDB

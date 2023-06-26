@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -9,37 +8,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-const lines_data = [
-  { key: "QB-L1", color: "#fca5a5" },
-  { key: "RB-L1", color: "#6ee7b7" },
-  { key: "WR-L1", color: "#7dd3fc" },
-  { key: "TE-L1", color: "#fdba74" },
-  { key: "DEF-L1", color: "#fde047" },
-  { key: "K-L1", color: "#c4b5fd" },
-
-  { key: "QB-L2", color: "#ef4444" },
-  { key: "RB-L2", color: "#10b981" },
-  { key: "WR-L2", color: "#0ea5e9 " },
-  { key: "TE-L2", color: "#f97316" },
-  { key: "DEF-L2", color: "#eab308" },
-  { key: "K-L2", color: "#8b5cf6" },
-];
+import { useGraphSettingsStore } from "../store/graphSettingsStore";
 
 function Graph({ data }) {
-  const [hideLine, setHideLine] = useState(
-    lines_data.reduce((a, { key }) => {
-      a[key] = false;
-      return a;
-    }, {})
-  );
-
-  function onClickLegend(e) {
-    setHideLine({
-      ...hideLine,
-      [e.target.id]: !hideLine[e.target.id],
-    });
-  }
+  const [settings, toggleLineVisible] = useGraphSettingsStore((state) => [
+    state.settings,
+    state.toggleLineVisible,
+  ]);
 
   const renderLegend = (props) => {
     const { payload } = props;
@@ -54,8 +29,8 @@ function Graph({ data }) {
             <input
               id={entry.value}
               type="checkbox"
-              checked={!hideLine[entry.value]}
-              onChange={onClickLegend}
+              checked={settings[entry.value].lineVisible}
+              onChange={(e) => toggleLineVisible(e.target.id)}
               className="w-[13px] h-5"
             />
             <label htmlFor={entry.value}>{entry.value}</label>
@@ -100,20 +75,16 @@ function Graph({ data }) {
           tickCount={10}
         />
         <Tooltip />
-        <Legend
-          align="center"
-          verticalAlign="bottom"
-          content={renderLegend}
-        />
-        {lines_data.map((line, index) => (
+        <Legend align="center" verticalAlign="bottom" content={renderLegend} />
+        {Object.keys(settings).map((key) => (
           <Line
-            key={index}
+            key={key}
             type="linear"
             dot={false}
-            dataKey={line.key}
-            stroke={line.color}
+            dataKey={key}
+            stroke={settings[key].color}
             strokeWidth={2}
-            hide={hideLine[line.key]}
+            hide={!settings[key].lineVisible}
           />
         ))}
       </LineChart>
