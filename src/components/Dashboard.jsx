@@ -11,9 +11,15 @@ import { LoadingSpinner } from "./LoadingSpinner";
 function Dashboard() {
   const queryFilters = useQueryFiltersStore((state) => state.queryFilters);
 
-  const settingsLeague1 = useLeague1Store((state) => state.settings);
+  const [settingsLeague1, positionsLeague1] = useLeague1Store((state) => [
+    state.settings,
+    state.positions,
+  ]);
 
-  const settingsLeague2 = useLeague2Store((state) => state.settings);
+  const [settingsLeague2, positionsLeague2] = useLeague2Store((state) => [
+    state.settings,
+    state.positions,
+  ]);
 
   const statsQuery = useQuery({
     queryKey: ["stats", queryFilters],
@@ -38,7 +44,9 @@ function Dashboard() {
   const { fpts, fpts_rank, fpts_avg } = dashboardData(
     statsQuery.data,
     settingsLeague1,
-    settingsLeague2
+    settingsLeague2,
+    positionsLeague1,
+    positionsLeague2
   );
 
   return (
