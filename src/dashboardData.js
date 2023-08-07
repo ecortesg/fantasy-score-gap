@@ -33,7 +33,7 @@ export function dashboardData(
           top[`${elem.position}-L1`] = elem.fpts1;
         }
 
-        if (elem.position_rank1 === i && positions2[elem.position] >= i) {
+        if (elem.position_rank2 === i && positions2[elem.position] >= i) {
           top[`${elem.position}-L2`] = elem.fpts2;
         }
       });
