@@ -1,4 +1,10 @@
-export function dashboardData(stats, settingsLeague1, settingsLeague2) {
+export function dashboardData(
+  stats,
+  settingsLeague1,
+  settingsLeague2,
+  positionsLeague1,
+  positionsLeague2
+) {
   function getPositionalRank(sortedData, league) {
     let pos_counter = {};
     const fpts_rank = sortedData.map((elem, index) => {
@@ -13,56 +19,66 @@ export function dashboardData(stats, settingsLeague1, settingsLeague2) {
     return fpts_rank;
   }
 
-  function getTopPlayers(rankings, num_players, starters) {
+  function getTopPlayers(rankings, positions1, positions2) {
+    const num_players = Math.max(
+      Math.max(...Object.values(positions1)),
+      Math.max(...Object.values(positions2))
+    );
+
     const fpts_rank = [];
     for (let i = 1; i <= num_players; i++) {
-      let top_num1 = rankings.filter((elem) => elem.position_rank1 === i);
-      let top_num2 = rankings.filter((elem) => elem.position_rank2 === i);
+      const top = {};
+      rankings.forEach((elem) => {
+        if (elem.position_rank1 === i && positions1[elem.position] >= i) {
+          top[`${elem.position}-L1`] = elem.fpts1;
+        }
 
-      const top1 = {};
-      top_num1.forEach((elem) => {
-        if (starters[elem.position] >= i) {
-          top1[`${elem.position}-L1`] = elem.fpts1;
+        if (elem.position_rank1 === i && positions2[elem.position] >= i) {
+          top[`${elem.position}-L2`] = elem.fpts2;
         }
       });
 
-      const top2 = {};
-      top_num2.forEach((elem) => {
-        if (starters[elem.position] >= i) {
-          top2[`${elem.position}-L2`] = elem.fpts2;
-        }
-      });
-
-      fpts_rank.push({ rank: i, ...top1, ...top2 });
+      fpts_rank.push({ rank: i, ...top });
     }
     return fpts_rank;
   }
 
-  function getAvgPointsPosition(rankings, numPlayersPosition) {
+  function getAvgPointsPosition(rankings, positions1, positions2) {
     let fpts_avg = [];
-    for (const position in numPlayersPosition) {
-      const scores1 = rankings
-        .filter(
-          (obj) =>
-            obj.position_rank1 <= numPlayersPosition[position] &&
-            obj.position === position
-        )
-        .map((obj) => obj.fpts_per_game1);
 
-      const avg1 = Number(
-        (scores1.reduce((a, b) => a + b, 0) / scores1.length).toFixed(1)
+    for (const position in positions1) {
+      const positionRank1 = positions1[position];
+      const positionRank2 = positions2[position];
+
+      const combinedScores = rankings.reduce(
+        (acc, obj) => {
+          if (obj.position === position) {
+            if (obj.position_rank1 <= positionRank1) {
+              acc.avg1Sum += obj.fpts_per_game1;
+              acc.avg1Count += 1;
+            }
+
+            if (obj.position_rank2 <= positionRank2) {
+              acc.avg2Sum += obj.fpts_per_game2;
+              acc.avg2Count += 1;
+            }
+          }
+          return acc;
+        },
+        {
+          avg1Sum: 0,
+          avg1Count: 0,
+          avg2Sum: 0,
+          avg2Count: 0,
+        }
       );
 
-      const scores2 = rankings
-        .filter(
-          (obj) =>
-            obj.position_rank2 <= numPlayersPosition[position] &&
-            obj.position === position
-        )
-        .map((obj) => obj.fpts_per_game2);
+      const avg1 = Number(
+        (combinedScores.avg1Sum / combinedScores.avg1Count).toFixed(1)
+      );
 
       const avg2 = Number(
-        (scores2.reduce((a, b) => a + b, 0) / scores2.length).toFixed(1)
+        (combinedScores.avg2Sum / combinedScores.avg2Count).toFixed(1)
       );
 
       fpts_avg.push({
@@ -71,6 +87,7 @@ export function dashboardData(stats, settingsLeague1, settingsLeague2) {
         avg2,
       });
     }
+
     return fpts_avg;
   }
 
@@ -96,18 +113,13 @@ export function dashboardData(stats, settingsLeague1, settingsLeague2) {
   fpts.sort((a, b) => b.fpts2 - a.fpts2);
   fpts = getPositionalRank(fpts, 2);
 
-  const starters = {
-    QB: 16,
-    RB: 36,
-    TE: 16,
-    K: 16,
-    DEF: 16,
-    WR: 36,
-  };
+  const fpts_rank = getTopPlayers(fpts, positionsLeague1, positionsLeague2);
 
-  const fpts_rank = getTopPlayers(fpts, 36, starters);
-
-  const fpts_avg = getAvgPointsPosition(fpts, starters);
+  const fpts_avg = getAvgPointsPosition(
+    fpts,
+    positionsLeague1,
+    positionsLeague2
+  );
 
   return {
     fpts,

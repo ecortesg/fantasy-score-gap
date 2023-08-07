@@ -1,0 +1,56 @@
+import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
+import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import PresetButton from "./PresetButton";
+
+function PresetsPage() {
+  const updateSettings1 = useLeague1Store((state) => state.updateSettings);
+  const updateSettings2 = useLeague2Store((state) => state.updateSettings);
+
+  return (
+    <>
+      <h2 className="text-lg font-bold text-center mb-5">Presets</h2>
+      <div className="flex gap-6 justify-end pb-5 mx-8">
+        <div className="w-1/2 text-center font-bold">
+          <p>League 1</p>
+        </div>
+        <div className="w-1/2 text-center font-bold">
+          <p>League 2</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <PresetButton
+          label="Sleeper"
+          values={SLEEPER}
+          updateValues={updateSettings1}
+        />
+        <PresetButton
+          label="Sleeper"
+          values={SLEEPER}
+          updateValues={updateSettings2}
+        />
+        <PresetButton
+          label="ESPN"
+          values={ESPN}
+          updateValues={updateSettings1}
+        />
+        <PresetButton
+          label="ESPN"
+          values={ESPN}
+          updateValues={updateSettings2}
+        />
+        <PresetButton
+          label="Yahoo"
+          values={YAHOO}
+          updateValues={updateSettings1}
+        />
+        <PresetButton
+          label="Yahoo"
+          values={YAHOO}
+          updateValues={updateSettings2}
+        />
+      </div>
+    </>
+  );
+}
+
+export default PresetsPage;

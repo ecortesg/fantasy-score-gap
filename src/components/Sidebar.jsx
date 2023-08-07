@@ -2,7 +2,7 @@ import { useMultipageForm } from "../hooks/useMultipageForm";
 import CategoryLink from "./CategoryLink";
 import Root from "./Root";
 import SettingsPage from "./SettingsPage";
-import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
+import PresetsPage from "./PresetsPage";
 import {
   PASSING,
   RUSHING,
@@ -13,17 +13,12 @@ import {
   SPECIAL_TEAMS_PLAYER,
   MISC,
   BONUS,
+  POSITIONS,
 } from "../data/fields_data";
 import { IoMdArrowBack } from "react-icons/io";
-import PresetButton from "./PresetButton";
+import PositionsPage from "./PositionsPage";
 
-function Sidebar({
-  openSidebar,
-  valuesLeague1,
-  valuesLeague2,
-  updateValuesLeague1,
-  updateValuesLeague2,
-}) {
+function Sidebar({ openSidebar }) {
   const { tab, goTo, isRoot } = useMultipageForm({
     root: <Root />,
     passing: <SettingsPage title="Passing" fields={PASSING} />,
@@ -42,6 +37,8 @@ function Sidebar({
     ),
     misc: <SettingsPage title="Misc" fields={MISC} />,
     bonus: <SettingsPage title="Bonus" fields={BONUS} />,
+    positions: <PositionsPage title="Number of Players" fields={POSITIONS} />,
+    presets: <PresetsPage />,
   });
 
   return (
@@ -93,43 +90,14 @@ function Sidebar({
             />
             <CategoryLink label="Misc" onClickFunction={() => goTo("misc")} />
             <CategoryLink label="Bonus" onClickFunction={() => goTo("bonus")} />
-            <div className="px-4 py-4">
-              <p className="mb-4">Presets</p>
-              <div className="grid grid-cols-2 gap-3">
-                <p className="text-center font-bold">League 1</p>
-                <p className="text-center font-bold">League 2</p>
-                <PresetButton
-                  label="Sleeper"
-                  values={SLEEPER}
-                  updateValues={updateValuesLeague1}
-                />
-                <PresetButton
-                  label="Sleeper"
-                  values={SLEEPER}
-                  updateValues={updateValuesLeague2}
-                />
-                <PresetButton
-                  label="ESPN"
-                  values={ESPN}
-                  updateValues={updateValuesLeague1}
-                />
-                <PresetButton
-                  label="ESPN"
-                  values={ESPN}
-                  updateValues={updateValuesLeague2}
-                />
-                <PresetButton
-                  label="Yahoo"
-                  values={YAHOO}
-                  updateValues={updateValuesLeague1}
-                />
-                <PresetButton
-                  label="Yahoo"
-                  values={YAHOO}
-                  updateValues={updateValuesLeague2}
-                />
-              </div>
-            </div>
+            <CategoryLink
+              label="Number of Players"
+              onClickFunction={() => goTo("positions")}
+            />
+            <CategoryLink
+              label="Presets"
+              onClickFunction={() => goTo("presets")}
+            />
           </div>
         )}
       </div>
