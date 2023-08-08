@@ -2,6 +2,7 @@ export const PASSING = [
   {
     id: "pass_yd",
     label: "Points Per Passing Yard",
+    step: "0.01",
   },
   {
     id: "pass_td",

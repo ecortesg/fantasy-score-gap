@@ -30,6 +30,7 @@ function SettingsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
+                step={field.step || "0.1"}
                 value={settings1[field.id]}
                 onChange={(e) =>
                   updateSettings1({ [e.target.id]: Number(e.target.value) })
@@ -39,6 +40,7 @@ function SettingsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
+                step={field.step || "0.1"}
                 value={settings2[field.id]}
                 onChange={(e) =>
                   updateSettings2({ [e.target.id]: Number(e.target.value) })
