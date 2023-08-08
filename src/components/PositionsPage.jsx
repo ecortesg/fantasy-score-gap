@@ -31,7 +31,6 @@ function PositionsPage({ title, fields }) {
                 id={field.id}
                 type="number"
                 min="0"
-                step="1"
                 value={positions1[field.id]}
                 onChange={(e) =>
                   updatePositions1({ [e.target.id]: Number(e.target.value) })
@@ -41,6 +40,7 @@ function PositionsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
+                min="0"
                 value={positions2[field.id]}
                 onChange={(e) =>
                   updatePositions2({ [e.target.id]: Number(e.target.value) })
