@@ -47,7 +47,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague1}
                 onBlur={(e) =>
                   updateSettings1({
-                    [e.target.id]: Number(valuesLeague1[e.target.id]),
+                    [e.target.id]: Number(valuesLeague1[e.target.id] || 0),
                   })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
@@ -60,7 +60,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague2}
                 onBlur={(e) =>
                   updateSettings2({
-                    [e.target.id]: Number(valuesLeague2[e.target.id]),
+                    [e.target.id]: Number(valuesLeague2[e.target.id] || 0),
                   })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
