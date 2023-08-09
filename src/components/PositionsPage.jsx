@@ -31,7 +31,7 @@ function PositionsPage({ title, fields }) {
                 id={field.id}
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]"
+                pattern="[0-9]*"
                 value={positions1[field.id]}
                 onChange={(e) =>
                   updatePositions1({ [e.target.id]: Number(e.target.value) })
@@ -42,7 +42,7 @@ function PositionsPage({ title, fields }) {
                 id={field.id}
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]"
+                pattern="[0-9]*"
                 value={positions2[field.id]}
                 onChange={(e) =>
                   updatePositions2({ [e.target.id]: Number(e.target.value) })

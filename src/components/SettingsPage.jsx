@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
 
 function SettingsPage({ title, fields }) {
@@ -10,6 +11,17 @@ function SettingsPage({ title, fields }) {
     state.settings,
     state.updateSettings,
   ]);
+
+  const [valuesLeague1, setValuesLeague1] = useState(settings1);
+  const [valuesLeague2, setValuesLeague2] = useState(settings2);
+
+  function handleChangeLeague1(e) {
+    setValuesLeague1({ ...valuesLeague1, [e.target.id]: e.target.value });
+  }
+
+  function handleChangeLeague2(e) {
+    setValuesLeague2({ ...valuesLeague2, [e.target.id]: e.target.value });
+  }
 
   return (
     <>
@@ -30,20 +42,28 @@ function SettingsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
+                inputMode="decimal"
                 step={field.step || "0.1"}
-                value={settings1[field.id]}
-                onChange={(e) =>
-                  updateSettings1({ [e.target.id]: Number(e.target.value) })
+                value={valuesLeague1[field.id]}
+                onChange={handleChangeLeague1}
+                onBlur={(e) =>
+                  updateSettings1({
+                    [e.target.id]: Number(valuesLeague1[e.target.id]),
+                  })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
               <input
                 id={field.id}
                 type="number"
+                inputMode="decimal"
                 step={field.step || "0.1"}
-                value={settings2[field.id]}
-                onChange={(e) =>
-                  updateSettings2({ [e.target.id]: Number(e.target.value) })
+                value={valuesLeague2[field.id]}
+                onChange={handleChangeLeague2}
+                onBlur={(e) =>
+                  updateSettings2({
+                    [e.target.id]: Number(valuesLeague2[e.target.id]),
+                  })
                 }
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
