@@ -42,7 +42,6 @@ function SettingsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
-                inputMode="decimal"
                 step={field.step || "0.1"}
                 value={valuesLeague1[field.id]}
                 onChange={handleChangeLeague1}
@@ -56,7 +55,6 @@ function SettingsPage({ title, fields }) {
               <input
                 id={field.id}
                 type="number"
-                inputMode="decimal"
                 step={field.step || "0.1"}
                 value={valuesLeague2[field.id]}
                 onChange={handleChangeLeague2}
