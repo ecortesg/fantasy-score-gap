@@ -74,11 +74,11 @@ export function dashboardData(
       );
 
       const avg1 = Number(
-        (combinedScores.avg1Sum / combinedScores.avg1Count).toFixed(1)
-      );
+        (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(1)
+      ); // 0 divided by 0 returns NaN
 
       const avg2 = Number(
-        (combinedScores.avg2Sum / combinedScores.avg2Count).toFixed(1)
+        (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(1)
       );
 
       fpts_avg.push({
