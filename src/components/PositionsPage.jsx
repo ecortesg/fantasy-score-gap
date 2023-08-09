@@ -29,8 +29,9 @@ function PositionsPage({ title, fields }) {
             <div className="flex gap-6 justify-end mx-4">
               <input
                 id={field.id}
-                type="number"
-                min="0"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]"
                 value={positions1[field.id]}
                 onChange={(e) =>
                   updatePositions1({ [e.target.id]: Number(e.target.value) })
@@ -39,8 +40,9 @@ function PositionsPage({ title, fields }) {
               />
               <input
                 id={field.id}
-                type="number"
-                min="0"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]"
                 value={positions2[field.id]}
                 onChange={(e) =>
                   updatePositions2({ [e.target.id]: Number(e.target.value) })
