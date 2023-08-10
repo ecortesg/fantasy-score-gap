@@ -23,6 +23,12 @@ function SettingsPage({ title, fields }) {
     setValuesLeague2({ ...valuesLeague2, [e.target.id]: e.target.value });
   }
 
+  function handleKeyPress(e) {
+    if (e.key === "Enter") {
+      e.target.blur();
+    }
+  }
+
   return (
     <>
       <h2 className="text-lg font-bold text-center mb-5">{title}</h2>
@@ -50,6 +56,7 @@ function SettingsPage({ title, fields }) {
                     [e.target.id]: Number(valuesLeague1[e.target.id] || 0),
                   })
                 }
+                onKeyDown={(e) => handleKeyPress(e)}
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
               <input
@@ -63,6 +70,7 @@ function SettingsPage({ title, fields }) {
                     [e.target.id]: Number(valuesLeague2[e.target.id] || 0),
                   })
                 }
+                onKeyDown={(e) => handleKeyPress(e)}
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
             </div>
