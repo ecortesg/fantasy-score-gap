@@ -23,7 +23,25 @@ function SettingsPage({ title, fields }) {
     setValuesLeague2({ ...valuesLeague2, [e.target.id]: e.target.value });
   }
 
-  function handleKeyPress(e) {
+  const handleBlurLeague1 = (e) => {
+    const inputValue = Number(valuesLeague1[e.target.id]);
+    if (isNaN(inputValue)) {
+      alert("Invalid input. Please enter numbers only.");
+    } else {
+      updateSettings1({ [e.target.id]: inputValue });
+    }
+  };
+
+  const handleBlurLeague2 = (e) => {
+    const inputValue = Number(valuesLeague2[e.target.id]);
+    if (isNaN(inputValue)) {
+      alert("Invalid input. Please enter numbers only.");
+    } else {
+      updateSettings2({ [e.target.id]: inputValue });
+    }
+  };
+
+  function handleKeyDown(e) {
     if (e.key === "Enter") {
       e.target.blur();
     }
@@ -51,12 +69,8 @@ function SettingsPage({ title, fields }) {
                 step={field.step || "0.1"}
                 value={valuesLeague1[field.id]}
                 onChange={handleChangeLeague1}
-                onBlur={(e) =>
-                  updateSettings1({
-                    [e.target.id]: Number(valuesLeague1[e.target.id] || 0),
-                  })
-                }
-                onKeyDown={(e) => handleKeyPress(e)}
+                onBlur={handleBlurLeague1}
+                onKeyDown={handleKeyDown}
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
               <input
@@ -65,12 +79,8 @@ function SettingsPage({ title, fields }) {
                 step={field.step || "0.1"}
                 value={valuesLeague2[field.id]}
                 onChange={handleChangeLeague2}
-                onBlur={(e) =>
-                  updateSettings2({
-                    [e.target.id]: Number(valuesLeague2[e.target.id] || 0),
-                  })
-                }
-                onKeyDown={(e) => handleKeyPress(e)}
+                onBlur={handleBlurLeague2}
+                onKeyDown={handleKeyDown}
                 className="border rounded shadow py-2 px-3 w-1/2"
               />
             </div>
