@@ -24,21 +24,13 @@ function SettingsPage({ title, fields }) {
   }
 
   const handleBlurLeague1 = (e) => {
-    const inputValue = Number(valuesLeague1[e.target.id]);
-    if (isNaN(inputValue)) {
-      alert("Invalid input. Please enter numbers only.");
-    } else {
-      updateSettings1({ [e.target.id]: inputValue });
-    }
+    const inputValue = Number(valuesLeague1[e.target.id]) || 0;
+    updateSettings1({ [e.target.id]: inputValue });
   };
 
   const handleBlurLeague2 = (e) => {
-    const inputValue = Number(valuesLeague2[e.target.id]);
-    if (isNaN(inputValue)) {
-      alert("Invalid input. Please enter numbers only.");
-    } else {
-      updateSettings2({ [e.target.id]: inputValue });
-    }
+    const inputValue = Number(valuesLeague2[e.target.id]) || 0;
+    updateSettings2({ [e.target.id]: inputValue });
   };
 
   function handleKeyDown(e) {
