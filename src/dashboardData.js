@@ -2,8 +2,7 @@ export function dashboardData(
   stats,
   settingsLeague1,
   settingsLeague2,
-  positionsLeague1,
-  positionsLeague2
+  positions
 ) {
   function getPositionalRank(sortedData, league) {
     let pos_counter = {};
@@ -19,21 +18,18 @@ export function dashboardData(
     return fpts_rank;
   }
 
-  function getTopPlayers(rankings, positions1, positions2) {
-    const num_players = Math.max(
-      Math.max(...Object.values(positions1)),
-      Math.max(...Object.values(positions2))
-    );
+  function getTopPlayers(rankings, positions) {
+    const num_players = Math.max(...Object.values(positions));
 
     const fpts_rank = [];
     for (let i = 1; i <= num_players; i++) {
       const top = {};
       rankings.forEach((elem) => {
-        if (elem.position_rank1 === i && positions1[elem.position] >= i) {
+        if (elem.position_rank1 === i && positions[elem.position] >= i) {
           top[`${elem.position}-L1`] = elem.fpts1;
         }
 
-        if (elem.position_rank2 === i && positions2[elem.position] >= i) {
+        if (elem.position_rank2 === i && positions[elem.position] >= i) {
           top[`${elem.position}-L2`] = elem.fpts2;
         }
       });
@@ -43,22 +39,21 @@ export function dashboardData(
     return fpts_rank;
   }
 
-  function getAvgPointsPosition(rankings, positions1, positions2) {
+  function getAvgPointsPosition(rankings, positions) {
     let fpts_avg = [];
 
-    for (const position in positions1) {
-      const positionRank1 = positions1[position];
-      const positionRank2 = positions2[position];
+    for (const position in positions) {
+      const positionRank = positions[position];
 
       const combinedScores = rankings.reduce(
         (acc, obj) => {
           if (obj.position === position) {
-            if (obj.position_rank1 <= positionRank1) {
+            if (obj.position_rank1 <= positionRank) {
               acc.avg1Sum += obj.fpts_per_game1;
               acc.avg1Count += 1;
             }
 
-            if (obj.position_rank2 <= positionRank2) {
+            if (obj.position_rank2 <= positionRank) {
               acc.avg2Sum += obj.fpts_per_game2;
               acc.avg2Count += 1;
             }
@@ -113,13 +108,9 @@ export function dashboardData(
   fpts.sort((a, b) => b.fpts2 - a.fpts2);
   fpts = getPositionalRank(fpts, 2);
 
-  const fpts_rank = getTopPlayers(fpts, positionsLeague1, positionsLeague2);
+  const fpts_rank = getTopPlayers(fpts, positions);
 
-  const fpts_avg = getAvgPointsPosition(
-    fpts,
-    positionsLeague1,
-    positionsLeague2
-  );
+  const fpts_avg = getAvgPointsPosition(fpts, positions);
 
   return {
     fpts,

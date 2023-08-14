@@ -13,10 +13,8 @@ import {
   SPECIAL_TEAMS_PLAYER,
   MISC,
   BONUS,
-  POSITIONS,
 } from "../data/fields_data";
 import { IoMdArrowBack } from "react-icons/io";
-import PositionsPage from "./PositionsPage";
 
 function Sidebar({ openSidebar }) {
   const { tab, goTo, isRoot } = useMultipageForm({
@@ -37,7 +35,6 @@ function Sidebar({ openSidebar }) {
     ),
     misc: <SettingsPage title="Misc" fields={MISC} />,
     bonus: <SettingsPage title="Bonus" fields={BONUS} />,
-    positions: <PositionsPage title="Number of Players" fields={POSITIONS} />,
     presets: <PresetsPage />,
   });
 
@@ -90,10 +87,6 @@ function Sidebar({ openSidebar }) {
             />
             <CategoryLink label="Misc" onClickFunction={() => goTo("misc")} />
             <CategoryLink label="Bonus" onClickFunction={() => goTo("bonus")} />
-            <CategoryLink
-              label="Number of Players"
-              onClickFunction={() => goTo("positions")}
-            />
             <CategoryLink
               label="Presets"
               onClickFunction={() => goTo("presets")}
