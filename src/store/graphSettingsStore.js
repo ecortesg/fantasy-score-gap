@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { DEFAULT_POSITIONS } from "../data/positions_data";
 
 const initialSettings = {
   "QB-L1": { color: "#fca5a5", lineVisible: true },
@@ -17,6 +18,7 @@ const initialSettings = {
 
 export const useGraphSettingsStore = create((set) => ({
   settings: initialSettings,
+  positions: DEFAULT_POSITIONS,
   toggleLineVisible: (key) =>
     set((state) => ({
       settings: {
@@ -26,5 +28,9 @@ export const useGraphSettingsStore = create((set) => ({
           lineVisible: !state.settings[key].lineVisible,
         },
       },
+    })),
+  updatePositions: (newSetting) =>
+    set((state) => ({
+      positions: { ...state.positions, ...newSetting },
     })),
 }));

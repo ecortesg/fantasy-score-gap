@@ -6,20 +6,17 @@ import Graph from "./Graph";
 import Diagram from "./Diagram";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
 import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import { useGraphSettingsStore } from "../store/graphSettingsStore";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 function Dashboard() {
   const queryFilters = useQueryFiltersStore((state) => state.queryFilters);
 
-  const [settingsLeague1, positionsLeague1] = useLeague1Store((state) => [
-    state.settings,
-    state.positions,
-  ]);
+  const settingsLeague1 = useLeague1Store((state) => state.settings);
 
-  const [settingsLeague2, positionsLeague2] = useLeague2Store((state) => [
-    state.settings,
-    state.positions,
-  ]);
+  const settingsLeague2 = useLeague2Store((state) => state.settings);
+
+  const positions = useGraphSettingsStore((state) => state.positions);
 
   const statsQuery = useQuery({
     queryKey: ["stats", queryFilters],
@@ -45,8 +42,7 @@ function Dashboard() {
     statsQuery.data,
     settingsLeague1,
     settingsLeague2,
-    positionsLeague1,
-    positionsLeague2
+    positions
   );
 
   return (
