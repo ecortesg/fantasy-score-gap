@@ -7,6 +7,7 @@ import {
   useReactTable,
   getFilteredRowModel,
 } from "@tanstack/react-table";
+import { POSITIONS } from "../data/fields_data";
 
 function Table({ data }) {
   const [sorting, setSorting] = useState([]);
@@ -146,8 +147,6 @@ function Table({ data }) {
 export default Table;
 
 function PositionFilter({ handlePositionChange }) {
-  const positions = ["QB", "RB", "WR", "TE", "K", "DEF"];
-
   return (
     <div
       className="flex gap-2 shrink-0"
@@ -164,17 +163,17 @@ function PositionFilter({ handlePositionChange }) {
         ></input>
         <label htmlFor="ALL">ALL</label>
       </div>
-      {positions.map((pos) => {
+      {POSITIONS.map((pos) => {
         return (
-          <div key={pos}>
+          <div key={pos.id}>
             <input
               type="radio"
-              id={pos}
+              id={`filter-${pos.id}`}
               name="position"
-              value={pos}
+              value={pos.id}
               className="mx-1"
             ></input>
-            <label htmlFor={pos}>{pos}</label>
+            <label htmlFor={`filter-${pos.id}`}>{pos.label}</label>
           </div>
         );
       })}
