@@ -31,14 +31,13 @@ function Graph({ data }) {
             style={{ color: entry.color }}
           >
             <input
-              id={`line-${entry.value}`}
-              name={entry.value}
+              id={entry.value}
               type="checkbox"
               checked={settings[entry.value].lineVisible}
-              onChange={(e) => toggleLineVisible(e.target.name)}
+              onChange={(e) => toggleLineVisible(e.target.id)}
               className="w-[13px] h-5"
             />
-            <label htmlFor={`line-${entry.value}`}>{entry.value}</label>
+            <label htmlFor={entry.value}>{entry.value}</label>
           </li>
         ))}
       </ul>
@@ -54,17 +53,16 @@ function Graph({ data }) {
               key={field.id}
               className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
             >
-              <label htmlFor={`num-${field.id}`}>{field.id}</label>
+              <label htmlFor={field.id}>{field.id}</label>
               <input
-                id={`num-${field.id}`}
-                name={field.id}
+                id={field.id}
                 type="number"
                 inputMode="numeric"
                 min="0"
                 max="999"
                 value={positions[field.id].toString()}
                 onChange={(e) =>
-                  updatePositions({ [e.target.name]: Number(e.target.value) })
+                  updatePositions({ [e.target.id]: Number(e.target.value) })
                 }
                 className="border px-1 rounded w-full md:w-12"
               />
