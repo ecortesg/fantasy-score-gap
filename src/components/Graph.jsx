@@ -93,7 +93,7 @@ function Graph({ data }) {
             }}
             padding={{ left: 20, right: 20 }}
             domain={["minData", "maxData"]}
-            tickCount={20}
+            tickCount={Math.ceil(data.length / 2)}
           />
           <YAxis
             type="number"
