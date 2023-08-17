@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { useGraphSettingsStore } from "../store/graphSettingsStore";
 import { POSITIONS } from "../data/fields_data";
+import { useState } from "react";
 
 function Graph({ data }) {
   const [settings, toggleLineVisible, positions, updatePositions] =
@@ -19,6 +20,23 @@ function Graph({ data }) {
       state.positions,
       state.updatePositions,
     ]);
+
+  const [positionCount, setPositionCount] = useState(positions);
+
+  function handleChange(e) {
+    setPositionCount({ ...positionCount, [e.target.name]: e.target.value });
+  }
+
+  const handleBlur = (e) => {
+    const inputValue = Number(positionCount[e.target.name]) || 0;
+    updatePositions({ [e.target.name]: inputValue });
+  };
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      e.target.blur();
+    }
+  }
 
   const renderLegend = (props) => {
     const { payload } = props;
@@ -62,10 +80,10 @@ function Graph({ data }) {
                 inputMode="numeric"
                 min="0"
                 max="999"
-                value={positions[field.id].toString()}
-                onChange={(e) =>
-                  updatePositions({ [e.target.name]: Number(e.target.value) })
-                }
+                value={positionCount[field.id].toString()}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
                 className="border px-1 rounded w-full md:w-12"
               />
             </div>
