@@ -19,6 +19,7 @@ import { IoMdArrowBack } from "react-icons/io";
 function Sidebar({ openSidebar }) {
   const { tab, goTo, isRoot } = useMultipageForm({
     root: <Root />,
+    presets: <PresetsPage />,
     passing: <SettingsPage title="Passing" fields={PASSING} />,
     rushing: <SettingsPage title="Rushing" fields={RUSHING} />,
     receiving: <SettingsPage title="Receiving" fields={RECEIVING} />,
@@ -35,7 +36,6 @@ function Sidebar({ openSidebar }) {
     ),
     misc: <SettingsPage title="Misc" fields={MISC} />,
     bonus: <SettingsPage title="Bonus" fields={BONUS} />,
-    presets: <PresetsPage />,
   });
 
   return (
@@ -57,6 +57,10 @@ function Sidebar({ openSidebar }) {
         <div>{tab}</div>
         {isRoot && (
           <div>
+            <CategoryLink
+              label="Presets"
+              onClickFunction={() => goTo("presets")}
+            />
             <CategoryLink
               label="Passing"
               onClickFunction={() => goTo("passing")}
@@ -87,10 +91,6 @@ function Sidebar({ openSidebar }) {
             />
             <CategoryLink label="Misc" onClickFunction={() => goTo("misc")} />
             <CategoryLink label="Bonus" onClickFunction={() => goTo("bonus")} />
-            <CategoryLink
-              label="Presets"
-              onClickFunction={() => goTo("presets")}
-            />
           </div>
         )}
       </div>
