@@ -13,7 +13,7 @@ function Diagram({ data }) {
   return (
     <>
       <div className="mt-4 text-center">
-        <h3>FPts/Game</h3>
+        <h3>Average FPts/Game</h3>
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <RadarChart
