@@ -50,13 +50,23 @@ function Graph({ data }) {
     return count;
   }
 
+  const gridColsVariants = {
+    0: "",
+    1: "grid-cols-1",
+    2: "grid-cols-2",
+    3: "grid-cols-3",
+    4: "grid-cols-4",
+    5: "grid-cols-5",
+    6: "grid-cols-6",
+  };
+
   const renderLegend = (props) => {
     const { payload } = props;
     return (
       <ul
-        className={`grid grid-rows-2 grid-cols-${countNonZeroProperties(
-          positions
-        )} mt-4 gap-1 text-sm`}
+        className={`grid grid-rows-2 ${
+          gridColsVariants[countNonZeroProperties(positions)]
+        } mt-4 gap-1 text-sm`}
       >
         {payload.map((entry) => (
           <li
