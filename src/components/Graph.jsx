@@ -38,10 +38,26 @@ function Graph({ data }) {
     }
   }
 
+  function countNonZeroProperties(obj) {
+    let count = 0;
+
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] > 0) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
   const renderLegend = (props) => {
     const { payload } = props;
     return (
-      <ul className="grid grid-cols-6 mt-4 gap-1 text-sm">
+      <ul
+        className={`grid grid-rows-2 grid-cols-${countNonZeroProperties(
+          positions
+        )} mt-4 gap-1 text-sm`}
+      >
         {payload.map((entry) => (
           <li
             className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
@@ -66,21 +82,21 @@ function Graph({ data }) {
   return (
     <>
       <div className="grid grid-cols-6 mt-4 gap-1 text-sm mx-4">
-        {POSITIONS.map((field) => {
+        {Object.keys(positions).map((key) => {
           return (
             <div
-              key={field.id}
+              key={key}
               className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
             >
-              <label htmlFor={`count-${field.id}`}>{field.label}</label>
+              <label htmlFor={`count-${key}`}>{key}</label>
               <input
-                id={`count-${field.id}`}
-                name={field.id}
+                id={`count-${key}`}
+                name={key}
                 type="number"
                 inputMode="numeric"
                 min="0"
                 max="999"
-                value={positionCount[field.id].toString()}
+                value={positionCount[key].toString()}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onKeyDown={handleKeyDown}
@@ -129,17 +145,21 @@ function Graph({ data }) {
             verticalAlign="bottom"
             content={renderLegend}
           />
-          {Object.keys(settings).map((key) => (
-            <Line
-              key={key}
-              type="linear"
-              dot={false}
-              dataKey={key}
-              stroke={settings[key].color}
-              strokeWidth={2}
-              hide={!settings[key].lineVisible}
-            />
-          ))}
+          {Object.keys(settings).map((key) => {
+            if (positions[settings[key].position] > 0) {
+              return (
+                <Line
+                  key={key}
+                  type="linear"
+                  dot={false}
+                  dataKey={key}
+                  stroke={settings[key].color}
+                  strokeWidth={2}
+                  hide={!settings[key].lineVisible}
+                />
+              );
+            }
+          })}
         </LineChart>
       </ResponsiveContainer>
     </>

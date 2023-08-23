@@ -45,42 +45,44 @@ export function dashboardData(
     for (const position in positions) {
       const positionRank = positions[position];
 
-      const combinedScores = rankings.reduce(
-        (acc, obj) => {
-          if (obj.position === position) {
-            if (obj.position_rank1 <= positionRank) {
-              acc.avg1Sum += obj.fpts_per_game1;
-              acc.avg1Count += 1;
-            }
+      if (positionRank > 0) {
+        const combinedScores = rankings.reduce(
+          (acc, obj) => {
+            if (obj.position === position) {
+              if (obj.position_rank1 <= positionRank) {
+                acc.avg1Sum += obj.fpts_per_game1;
+                acc.avg1Count += 1;
+              }
 
-            if (obj.position_rank2 <= positionRank) {
-              acc.avg2Sum += obj.fpts_per_game2;
-              acc.avg2Count += 1;
+              if (obj.position_rank2 <= positionRank) {
+                acc.avg2Sum += obj.fpts_per_game2;
+                acc.avg2Count += 1;
+              }
             }
+            return acc;
+          },
+          {
+            avg1Sum: 0,
+            avg1Count: 0,
+            avg2Sum: 0,
+            avg2Count: 0,
           }
-          return acc;
-        },
-        {
-          avg1Sum: 0,
-          avg1Count: 0,
-          avg2Sum: 0,
-          avg2Count: 0,
-        }
-      );
+        );
 
-      const avg1 = Number(
-        (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(1)
-      ); // 0 divided by 0 returns NaN
+        const avg1 = Number(
+          (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(1)
+        ); // 0 divided by 0 returns NaN
 
-      const avg2 = Number(
-        (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(1)
-      );
+        const avg2 = Number(
+          (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(1)
+        );
 
-      fpts_avg.push({
-        position,
-        avg1,
-        avg2,
-      });
+        fpts_avg.push({
+          position,
+          avg1,
+          avg2,
+        });
+      }
     }
 
     return fpts_avg;
@@ -102,6 +104,8 @@ export function dashboardData(
 
     return { ...elem, fpts1, fpts2, fpts_per_game1, fpts_per_game2 };
   });
+
+  fpts = fpts.filter((elem) => positions[elem.position] > 0);
 
   fpts.sort((a, b) => b.fpts1 - a.fpts1);
   fpts = getPositionalRank(fpts, 1);
