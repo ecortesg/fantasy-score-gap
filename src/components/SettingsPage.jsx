@@ -63,7 +63,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague1}
                 onBlur={handleBlurLeague1}
                 onKeyDown={handleKeyDown}
-                className="border rounded shadow py-2 px-3 w-1/2"
+                className="border rounded py-2 px-3 w-1/2"
               />
               <input
                 id={field.id}
@@ -73,7 +73,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague2}
                 onBlur={handleBlurLeague2}
                 onKeyDown={handleKeyDown}
-                className="border rounded shadow py-2 px-3 w-1/2"
+                className="border rounded py-2 px-3 w-1/2"
               />
             </div>
           </div>

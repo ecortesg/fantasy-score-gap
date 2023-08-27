@@ -18,7 +18,7 @@ function Root() {
           onChange={(e) =>
             updateQueryFilters({ [e.target.id]: e.target.value })
           }
-          className="border rounded shadow"
+          className="border rounded"
         >
           <option value="2022">2022</option>
           <option value="2021">2021</option>
@@ -31,7 +31,7 @@ function Root() {
           onChange={(e) =>
             updateQueryFilters({ [e.target.id]: e.target.value })
           }
-          className="border rounded shadow"
+          className="border rounded"
         >
           <option value="season">Season</option>
           <option value={1}>Week 1</option>
