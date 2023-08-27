@@ -203,7 +203,7 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
 
   return (
     <input
-      className="border rounded px-2 py-1 shadow"
+      className="border rounded px-2 py-1"
       type="text"
       placeholder="Find player"
       value={value}
