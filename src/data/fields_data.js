@@ -513,30 +513,3 @@ export const BONUS = [
     label: "1st Down Bonus-QB",
   },
 ];
-
-export const POSITIONS = [
-  {
-    id: "QB",
-    label: "QB",
-  },
-  {
-    id: "RB",
-    label: "RB",
-  },
-  {
-    id: "WR",
-    label: "WR",
-  },
-  {
-    id: "TE",
-    label: "TE",
-  },
-  {
-    id: "DEF",
-    label: "DEF",
-  },
-  {
-    id: "K",
-    label: "K",
-  },
-];

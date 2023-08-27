@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useGraphSettingsStore } from "../store/graphSettingsStore";
-import { POSITIONS } from "../data/fields_data";
 import { useState } from "react";
 
 function Graph({ data }) {
