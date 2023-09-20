@@ -40,11 +40,11 @@ function Sidebar({ openSidebar }) {
 
   return (
     <div
-      className={`flex flex-col justify-between bg-white lg:w-full lg:sticky top-12 lg:z-0 z-10 fixed h-[calc(100vh_-_48px)] w-[300px] transition-transform .3s ease-in-out lg:translate-x-0 ${
+      className={`flex flex-col justify-between bg-white xl:w-full xl:sticky top-12 xl:z-0 z-10 fixed h-[calc(100vh_-_48px)] w-[300px] transition-transform .3s ease-in-out xl:translate-x-0 ${
         !openSidebar ? "-translate-x-full" : ""
       }`}
     >
-      <div className="lg:sticky top-0 lg:top-12 overflow-y-auto py-5">
+      <div className="xl:sticky top-0 xl:top-12 overflow-y-auto py-5">
         <div className="flex justify-center relative">
           {!isRoot && (
             <IoMdArrowBack

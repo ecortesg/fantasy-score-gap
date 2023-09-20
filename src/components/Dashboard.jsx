@@ -46,14 +46,14 @@ function Dashboard() {
   );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 p-5">
-      <div className="bg-white lg:col-span-9 rounded-lg shadow-lg h-[450px]">
+    <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-5 p-5 h-full lg:h-screen">
+      <div className="bg-white lg:col-span-9 lg:row-span-1 rounded-lg shadow-lg">
         <Graph data={fpts_rank} />
       </div>
-      <div className="bg-white lg:col-span-3 rounded-lg shadow-lg h-[450px]">
+      <div className="bg-white lg:col-span-3 lg:row-span-1 rounded-lg shadow-lg">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white lg:col-span-12 rounded-lg shadow-lg h-[500px]">
+      <div className="bg-white lg:col-span-12 lg:row-span-1 rounded-lg h-[600px] lg:h-auto shadow-lg">
         <Table data={fpts} />
       </div>
     </div>

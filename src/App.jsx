@@ -14,7 +14,7 @@ function App() {
           onIconClick={() => setOpenSidebar((prev) => !prev)}
         />
       </section>
-      <section className="grid lg:grid-cols-[300px_auto]">
+      <section className="grid xl:grid-cols-[15%_auto]">
         <Sidebar openSidebar={openSidebar} />
         <Dashboard />
       </section>

@@ -89,14 +89,14 @@ function Table({ data }) {
 
   return (
     <div className="p-5 h-full">
-      <div className="flex md:flex-row flex-col md:gap-6 gap-4 items-center h-1/4 md:h-[10%]">
+      <div className="flex sm:flex-row flex-col sm:gap-6 gap-4 items-center h-1/4 sm:h-[10%]">
         <PlayerFilter
           column={playerColumn}
           handlePlayerChange={handlePlayerChange}
         />
         <PositionFilter handlePositionChange={handlePositionChange} />
       </div>
-      <div className="overflow-x-auto h-3/4 md:h-[90%]">
+      <div className="overflow-x-auto h-3/4 sm:h-[90%]">
         <table className="table-auto w-full">
           <thead className="border-b sticky top-0 bg-white whitespace-nowrap">
             {table.getHeaderGroups().map((headerGroup) => (
