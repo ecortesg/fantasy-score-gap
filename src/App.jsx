@@ -8,13 +8,13 @@ function App() {
 
   return (
     <main className="grid min-h-screen grid-rows-[48px_auto] bg-slate-200">
-      <section className="shadow-sm z-10">
+      <section className="shadow-sm z-50">
         <Navbar
           openSidebar={openSidebar}
           onIconClick={() => setOpenSidebar((prev) => !prev)}
         />
       </section>
-      <section className="grid xl:grid-cols-[15%_auto]">
+      <section className="grid xl:grid-cols-[minmax(300px,15%)_auto]">
         <Sidebar openSidebar={openSidebar} />
         <Dashboard />
       </section>

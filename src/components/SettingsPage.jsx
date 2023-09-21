@@ -16,21 +16,21 @@ function SettingsPage({ title, fields }) {
   const [valuesLeague2, setValuesLeague2] = useState(settings2);
 
   function handleChangeLeague1(e) {
-    setValuesLeague1({ ...valuesLeague1, [e.target.id]: e.target.value });
+    setValuesLeague1({ ...valuesLeague1, [e.target.name]: e.target.value });
   }
 
   function handleChangeLeague2(e) {
-    setValuesLeague2({ ...valuesLeague2, [e.target.id]: e.target.value });
+    setValuesLeague2({ ...valuesLeague2, [e.target.name]: e.target.value });
   }
 
   const handleBlurLeague1 = (e) => {
-    const inputValue = Number(valuesLeague1[e.target.id]) || 0;
-    updateSettings1({ [e.target.id]: inputValue });
+    const inputValue = Number(valuesLeague1[e.target.name]) || 0;
+    updateSettings1({ [e.target.name]: inputValue });
   };
 
   const handleBlurLeague2 = (e) => {
-    const inputValue = Number(valuesLeague2[e.target.id]) || 0;
-    updateSettings2({ [e.target.id]: inputValue });
+    const inputValue = Number(valuesLeague2[e.target.name]) || 0;
+    updateSettings2({ [e.target.name]: inputValue });
   };
 
   function handleKeyDown(e) {
@@ -52,11 +52,12 @@ function SettingsPage({ title, fields }) {
       </div>
       {fields.map((field) => {
         return (
-          <div className="mx-4 py-2" key={field.id}>
-            <label className="block text-sm mb-1">{field.label}</label>
+          <fieldset className="mx-4 py-2" key={field.id}>
+            <legend className="block text-sm mb-1">{field.label}</legend>
             <div className="flex gap-6 justify-end mx-4">
               <input
-                id={field.id}
+                id={`l1_${field.id}`}
+                name={field.id}
                 type="number"
                 step={field.step || "0.1"}
                 value={valuesLeague1[field.id]}
@@ -66,7 +67,8 @@ function SettingsPage({ title, fields }) {
                 className="border rounded py-2 px-3 w-1/2"
               />
               <input
-                id={field.id}
+                id={`l2_${field.id}`}
+                name={field.id}
                 type="number"
                 step={field.step || "0.1"}
                 value={valuesLeague2[field.id]}
@@ -76,7 +78,7 @@ function SettingsPage({ title, fields }) {
                 className="border rounded py-2 px-3 w-1/2"
               />
             </div>
-          </div>
+          </fieldset>
         );
       })}
     </>

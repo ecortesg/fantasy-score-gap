@@ -88,17 +88,17 @@ function Table({ data }) {
   }
 
   return (
-    <div className="p-5 h-full">
-      <div className="flex sm:flex-row flex-col sm:gap-6 gap-4 items-center h-1/4 sm:h-[10%]">
+    <div className="p-5 h-full flex flex-col">
+      <div className="flex sm:flex-row flex-col sm:gap-6 gap-4 items-center">
         <PlayerFilter
           column={playerColumn}
           handlePlayerChange={handlePlayerChange}
         />
         <PositionFilter handlePositionChange={handlePositionChange} />
       </div>
-      <div className="overflow-x-auto h-3/4 sm:h-[90%]">
+      <div className="overflow-x-auto">
         <table className="table-auto w-full">
-          <thead className="border-b sticky top-0 bg-white whitespace-nowrap">
+          <thead className="border-b sticky top-0 bg-white whitespace-nowrap z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -171,12 +171,12 @@ function PositionFilter({ handlePositionChange }) {
             <div key={key}>
               <input
                 type="radio"
-                id={`filter-${key}`}
+                id={`filter_${key}`}
                 name="position"
                 value={key}
                 className="mx-1"
               ></input>
-              <label htmlFor={`filter-${key}`}>{key}</label>
+              <label htmlFor={`filter_${key}`}>{key}</label>
             </div>
           );
         }
@@ -203,6 +203,7 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
 
   return (
     <input
+      id="filter_player"
       className="border rounded px-2 py-1"
       type="text"
       placeholder="Find player"

@@ -2,7 +2,7 @@ import { IoMdClose, IoMdMenu } from "react-icons/io";
 
 function Navbar({ openSidebar, onIconClick }) {
   return (
-    <nav className="bg-blue-500 text-white flex items-center w-full fixed z-20 px-4 shadow-sm h-12">
+    <nav className="bg-blue-500 text-white flex items-center w-full fixed px-4 shadow-sm h-12">
       {!openSidebar && (
         <IoMdMenu
           className="cursor-pointer mr-4 xl:hidden"

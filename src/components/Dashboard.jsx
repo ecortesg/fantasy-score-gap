@@ -47,7 +47,7 @@ function Dashboard() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-5 p-5 h-full lg:h-screen">
-      <div className="bg-white lg:col-span-9 lg:row-span-1 rounded-lg shadow-lg">
+      <div className="bg-white lg:col-span-9 lg:row-span-1 rounded-lg shadow-lg z-20">
         <Graph data={fpts_rank} />
       </div>
       <div className="bg-white lg:col-span-3 lg:row-span-1 rounded-lg shadow-lg">

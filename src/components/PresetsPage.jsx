@@ -1,6 +1,5 @@
 import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
 import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
-import PresetButton from "./PresetButton";
 
 function PresetsPage() {
   const updateSettings1 = useLeague1Store((state) => state.updateSettings);
@@ -54,3 +53,14 @@ function PresetsPage() {
 }
 
 export default PresetsPage;
+
+function PresetButton({ label, values, updateValues }) {
+  return (
+    <button
+      className="bg-slate-300 hover:bg-slate-200 py-1 rounded shadow mx-4"
+      onClick={() => updateValues(values)}
+    >
+      {label}
+    </button>
+  );
+}
