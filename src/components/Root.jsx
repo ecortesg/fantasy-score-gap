@@ -1,11 +1,23 @@
+import { useEffect } from "react";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
-import { shallow } from "zustand/shallow";
 
 function Root() {
-  const [queryFilters, updateQueryFilters] = useQueryFiltersStore(
-    (state) => [state.queryFilters, state.updateQueryFilters],
-    shallow
-  );
+  const [queryFilters, updateQueryFilters] = useQueryFiltersStore((state) => [
+    state.queryFilters,
+    state.updateQueryFilters,
+  ]);
+
+  function handleChange(e) {
+    updateQueryFilters({ [e.target.id]: e.target.value });
+  }
+
+  useEffect(() => {
+    const url = new URL(window.location);
+    Object.keys(queryFilters).forEach((key) => {
+      url.searchParams.set(key, queryFilters[key]);
+    });
+    window.history.replaceState(null, "", url);
+  }, [queryFilters]);
 
   return (
     <>
@@ -15,9 +27,7 @@ function Root() {
           name="season"
           id="season"
           value={queryFilters.season}
-          onChange={(e) =>
-            updateQueryFilters({ [e.target.id]: e.target.value })
-          }
+          onChange={handleChange}
           className="border rounded"
         >
           <option value="2022">2022</option>
@@ -28,9 +38,7 @@ function Root() {
           name="week"
           id="week"
           value={queryFilters.week}
-          onChange={(e) =>
-            updateQueryFilters({ [e.target.id]: e.target.value })
-          }
+          onChange={handleChange}
           className="border rounded"
         >
           <option value="season">Season</option>
