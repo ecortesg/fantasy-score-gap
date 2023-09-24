@@ -20,7 +20,7 @@ function Diagram({ data }) {
   return (
     <>
       <div className="flex flex-col mt-4 items-center gap-4">
-        <h3>Average FPts/Game</h3>
+        <h3 className="font-bold">Average FPts/Game</h3>
         <div className="flex gap-2 items-center">
           <ToggleSwitch
             isChecked={showSummaryTable}
