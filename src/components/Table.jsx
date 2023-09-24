@@ -7,7 +7,7 @@ import {
   useReactTable,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-import { useGraphSettingsStore } from "../store/graphSettingsStore";
+import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 
 function Table({ data }) {
   const [sorting, setSorting] = useState([]);
@@ -107,7 +107,7 @@ function Table({ data }) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer select-none p-1"
+                            ? "cursor-pointer p-1"
                             : "border-b border-black mx-1 p-1",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
@@ -131,7 +131,7 @@ function Table({ data }) {
             {table.getRowModel().rows.map((row) => (
               <tr className="border-b hover:bg-slate-100" key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td className="whitespace-nowrap px-2" key={cell.id}>
+                  <td className="whitespace-nowrap" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -147,7 +147,7 @@ function Table({ data }) {
 export default Table;
 
 function PositionFilter({ handlePositionChange }) {
-  const positions = useGraphSettingsStore((state) => state.positions);
+  const positions = useDashboardSettingsStore((state) => state.positions);
 
   return (
     <div

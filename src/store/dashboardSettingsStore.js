@@ -16,10 +16,10 @@ const initialSettings = {
   "K-L2": { color: "#8b5cf6", lineVisible: true, position: "K" },
 };
 
-export const useGraphSettingsStore = create((set) => ({
+export const useDashboardSettingsStore = create((set) => ({
   settings: initialSettings,
   positions: DEFAULT_POSITIONS,
-  toggleLineVisible: (key) =>
+  toggleLine: (key) =>
     set((state) => ({
       settings: {
         ...state.settings,
@@ -32,5 +32,10 @@ export const useGraphSettingsStore = create((set) => ({
   updatePositions: (newSetting) =>
     set((state) => ({
       positions: { ...state.positions, ...newSetting },
+    })),
+  showSummaryTable: false,
+  toggleSummaryTable: () =>
+    set((state) => ({
+      showSummaryTable: !state.showSummaryTable,
     })),
 }));

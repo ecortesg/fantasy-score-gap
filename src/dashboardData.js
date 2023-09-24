@@ -77,10 +77,16 @@ export function dashboardData(
           (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(1)
         );
 
+        const diff = Number((avg2 - avg1).toFixed(1));
+
+        const diff_pct = Number(((diff / avg1) * 100).toFixed(1));
+
         fpts_avg.push({
           position,
           avg1,
           avg2,
+          diff,
+          diff_pct,
         });
       }
     }
