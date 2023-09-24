@@ -6,7 +6,7 @@ import Graph from "./Graph";
 import Diagram from "./Diagram";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
 import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
-import { useGraphSettingsStore } from "../store/graphSettingsStore";
+import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 function Dashboard() {
@@ -16,7 +16,7 @@ function Dashboard() {
 
   const settingsLeague2 = useLeague2Store((state) => state.settings);
 
-  const positions = useGraphSettingsStore((state) => state.positions);
+  const positions = useDashboardSettingsStore((state) => state.positions);
 
   const statsQuery = useQuery({
     queryKey: ["stats", queryFilters],
@@ -47,13 +47,13 @@ function Dashboard() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-5 p-5 h-full lg:h-screen">
-      <div className="bg-white lg:col-span-9 lg:row-span-1 rounded-lg shadow-lg z-20">
+      <div className="bg-white lg:col-span-9 lg:row-span-1 rounded-lg shadow-lg z-20 h-[85vh] lg:h-auto">
         <Graph data={fpts_rank} />
       </div>
-      <div className="bg-white lg:col-span-3 lg:row-span-1 rounded-lg shadow-lg">
+      <div className="bg-white lg:col-span-3 lg:row-span-1 rounded-lg shadow-lg h-[65vh] lg:h-auto">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white lg:col-span-12 lg:row-span-1 rounded-lg h-[600px] lg:h-auto shadow-lg">
+      <div className="bg-white lg:col-span-12 lg:row-span-1 rounded-lg shadow-lg h-[85vh] lg:h-auto ">
         <Table data={fpts} />
       </div>
     </div>

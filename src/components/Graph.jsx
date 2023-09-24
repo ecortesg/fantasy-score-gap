@@ -8,14 +8,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useGraphSettingsStore } from "../store/graphSettingsStore";
+import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import { useState } from "react";
 
 function Graph({ data }) {
-  const [settings, toggleLineVisible, positions, updatePositions] =
-    useGraphSettingsStore((state) => [
+  const [settings, toggleLine, positions, updatePositions] =
+    useDashboardSettingsStore((state) => [
       state.settings,
-      state.toggleLineVisible,
+      state.toggleLine,
       state.positions,
       state.updatePositions,
     ]);
@@ -78,7 +78,7 @@ function Graph({ data }) {
               name={entry.value}
               type="checkbox"
               checked={settings[entry.value].lineVisible}
-              onChange={(e) => toggleLineVisible(e.target.name)}
+              onChange={(e) => toggleLine(e.target.name)}
               className="w-[13px] h-5"
             />
             <label htmlFor={`line-${entry.value}`}>{entry.value}</label>
