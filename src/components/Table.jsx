@@ -18,14 +18,17 @@ function Table({ data }) {
     columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
       id: "player",
       header: "Player",
+      size: 200,
     }),
     columnHelper.accessor((row) => row.position, {
       id: "position",
       header: "Position",
+      size: 80,
     }),
     columnHelper.accessor((row) => row.stats.gp, {
       id: "games",
       header: "Games",
+      size: 80,
     }),
     columnHelper.group({
       id: "league_1",
@@ -33,15 +36,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank1", {
           header: "Rank",
+          size: 80,
         }),
         columnHelper.accessor("position_rank1", {
           header: "Pos Rank",
+          size: 80,
         }),
         columnHelper.accessor("fpts1", {
           header: "FPts",
+          size: 80,
         }),
         columnHelper.accessor("fpts_per_game1", {
-          header: "FPts/Game",
+          header: "FPts/G",
+          size: 80,
         }),
       ],
     }),
@@ -51,15 +58,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank2", {
           header: "Rank",
+          size: 80,
         }),
         columnHelper.accessor("position_rank2", {
           header: "Pos Rank",
+          size: 80,
         }),
         columnHelper.accessor("fpts2", {
           header: "FPts",
+          size: 80,
         }),
         columnHelper.accessor("fpts_per_game2", {
-          header: "FPts/Game",
+          header: "FPts/G",
+          size: 80,
         }),
       ],
     }),
@@ -97,18 +108,25 @@ function Table({ data }) {
         <PositionFilter handlePositionChange={handlePositionChange} />
       </div>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full">
+        <table className="w-full table-fixed">
           <thead className="border-b sticky top-0 bg-white whitespace-nowrap z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    style={{
+                      width: header.getSize(),
+                      minWidth: header.minSize,
+                    }}
+                  >
                     {header.isPlaceholder ? null : (
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer p-1"
-                            : "border-b border-black mx-1 p-1",
+                            ? "cursor-pointer py-1"
+                            : "border-b border-black mx-1 py-1",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >

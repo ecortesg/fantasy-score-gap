@@ -40,7 +40,7 @@ function Sidebar({ openSidebar }) {
 
   return (
     <div
-      className={`flex flex-col justify-between bg-white border w-[300px] xl:w-full xl:sticky top-12 xl:z-0 z-40 fixed h-[calc(100vh_-_48px)] transition-transform .3s ease-in-out xl:translate-x-0 ${
+      className={`flex flex-col justify-between bg-white border w-full sm:w-[300px] xl:w-full xl:sticky top-12 xl:z-0 z-40 fixed h-[calc(100vh_-_48px)] transition-transform .3s ease-in-out xl:translate-x-0 ${
         !openSidebar ? "-translate-x-full" : ""
       }`}
     >
