@@ -5,14 +5,14 @@ function Navbar({ openSidebar, onIconClick }) {
     <nav className="bg-blue-500 text-white flex items-center w-full fixed px-4 shadow-sm h-12">
       {!openSidebar && (
         <IoMdMenu
-          className="cursor-pointer mr-4 xl:hidden"
+          className="cursor-pointer mr-4 2xl:hidden"
           size={28}
           onClick={onIconClick}
         />
       )}
       {openSidebar && (
         <IoMdClose
-          className="cursor-pointer mr-4 xl:hidden"
+          className="cursor-pointer mr-4 2xl:hidden"
           size={28}
           onClick={onIconClick}
         />
