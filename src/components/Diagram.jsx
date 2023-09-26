@@ -19,8 +19,8 @@ function Diagram({ data }) {
 
   return (
     <>
-      <div className="h-1/6 flex flex-col">
-        <div className="pt-5 px-5 h-full flex flex-col items-center justify-between">
+      <div className="h-1/5 flex flex-col">
+        <div className="h-full flex flex-col items-center justify-evenly">
           <h3 className="font-bold">Average FPts/Game</h3>
           <div className="flex gap-2 items-center">
             <ToggleSwitch
@@ -31,7 +31,7 @@ function Diagram({ data }) {
           </div>
         </div>
       </div>
-      <div className="h-5/6">
+      <div className="h-4/5">
         {showSummaryTable ? (
           <SummaryTable data={data} />
         ) : (
