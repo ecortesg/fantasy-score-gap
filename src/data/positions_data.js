@@ -5,4 +5,7 @@ export const DEFAULT_POSITIONS = {
   TE: 16,
   K: 16,
   DEF: 16,
+  // DL: 0,
+  // LB: 0,
+  // DB: 0,
 };

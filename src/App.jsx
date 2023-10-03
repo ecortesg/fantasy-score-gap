@@ -2,12 +2,13 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
+import Header from "./components/Header";
 
 function App() {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
-    <main className="grid min-h-screen grid-rows-[48px_auto] bg-slate-200">
+    <main className="grid min-h-screen grid-rows-[56px_auto] bg-slate-200">
       <section className="shadow-sm z-50">
         <Navbar
           openSidebar={openSidebar}
@@ -16,7 +17,10 @@ function App() {
       </section>
       <section className="grid 2xl:grid-cols-[minmax(300px,15%)_auto]">
         <Sidebar openSidebar={openSidebar} />
-        <Dashboard />
+        <div className="flex flex-col">
+          <Header />
+          <Dashboard />
+        </div>
       </section>
     </main>
   );

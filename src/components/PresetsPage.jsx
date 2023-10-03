@@ -7,8 +7,8 @@ function PresetsPage() {
 
   return (
     <>
-      <h2 className="text-lg font-bold text-center mb-5">Presets</h2>
-      <div className="flex gap-6 justify-end pb-5 mx-8">
+      <h2 className="text-lg font-bold text-center p-4">Presets</h2>
+      <div className="flex gap-4 justify-end pb-4 mx-8">
         <div className="w-1/2 text-center font-bold">
           <p>League 1</p>
         </div>

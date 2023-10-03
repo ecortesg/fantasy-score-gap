@@ -99,8 +99,8 @@ function Table({ data }) {
   }
 
   return (
-    <div className="p-5 h-full flex flex-col">
-      <div className="flex sm:flex-row flex-col sm:gap-6 gap-4 items-center">
+    <div className="p-4 h-full flex flex-col">
+      <div className="flex sm:flex-row flex-col gap-4 items-center">
         <PlayerFilter
           column={playerColumn}
           handlePlayerChange={handlePlayerChange}
