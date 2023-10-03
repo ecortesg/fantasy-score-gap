@@ -41,8 +41,8 @@ function SettingsPage({ title, fields }) {
 
   return (
     <>
-      <h2 className="text-lg font-bold text-center mb-5">{title}</h2>
-      <div className="flex gap-6 justify-end pb-5 mx-8">
+      <h2 className="text-lg font-bold text-center p-4">{title}</h2>
+      <div className="flex gap-8 justify-end pb-4 mx-8">
         <div className="w-1/2 text-center font-bold">
           <p>League 1</p>
         </div>
@@ -52,30 +52,30 @@ function SettingsPage({ title, fields }) {
       </div>
       {fields.map((field) => {
         return (
-          <fieldset className="mx-4 py-2" key={field.id}>
-            <legend className="block text-sm mb-1">{field.label}</legend>
-            <div className="flex gap-6 justify-end mx-4">
+          <fieldset className="mx-4 pb-4" key={field.id}>
+            <legend className="block text-sm mb-2">{field.label}</legend>
+            <div className="flex gap-8 justify-end mx-4">
               <input
                 id={`l1_${field.id}`}
                 name={field.id}
                 type="number"
-                step={field.step || "0.1"}
+                step={field.step || "0.5"}
                 value={valuesLeague1[field.id]}
                 onChange={handleChangeLeague1}
                 onBlur={handleBlurLeague1}
                 onKeyDown={handleKeyDown}
-                className="border rounded py-2 px-3 w-1/2"
+                className="border rounded py-1 px-2 w-1/2"
               />
               <input
                 id={`l2_${field.id}`}
                 name={field.id}
                 type="number"
-                step={field.step || "0.1"}
+                step={field.step || "0.5"}
                 value={valuesLeague2[field.id]}
                 onChange={handleChangeLeague2}
                 onBlur={handleBlurLeague2}
                 onKeyDown={handleKeyDown}
-                className="border rounded py-2 px-3 w-1/2"
+                className="border rounded py-1 px-2 w-1/2"
               />
             </div>
           </fieldset>

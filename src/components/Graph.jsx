@@ -9,33 +9,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
-import { useState } from "react";
 
 function Graph({ data }) {
-  const [settings, toggleLine, positions, updatePositions] =
-    useDashboardSettingsStore((state) => [
-      state.settings,
-      state.toggleLine,
-      state.positions,
-      state.updatePositions,
-    ]);
-
-  const [positionCount, setPositionCount] = useState(positions);
-
-  function handleChange(e) {
-    setPositionCount({ ...positionCount, [e.target.name]: e.target.value });
-  }
-
-  const handleBlur = (e) => {
-    const inputValue = Number(positionCount[e.target.name]) || 0;
-    updatePositions({ [e.target.name]: inputValue });
-  };
-
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      e.target.blur();
-    }
-  }
+  const [settings, toggleLine, positions] = useDashboardSettingsStore(
+    (state) => [state.settings, state.toggleLine, state.positions]
+  );
 
   function countNonZeroProperties(obj) {
     let count = 0;
@@ -79,7 +57,7 @@ function Graph({ data }) {
               type="checkbox"
               checked={settings[entry.value].lineVisible}
               onChange={(e) => toggleLine(e.target.name)}
-              className="w-[13px] h-5"
+              className="w-3 h-4"
             />
             <label htmlFor={`line-${entry.value}`}>{entry.value}</label>
           </li>
@@ -90,38 +68,13 @@ function Graph({ data }) {
 
   return (
     <>
-      <div className="grid grid-cols-6 mt-4 gap-1 text-sm mx-4">
-        {Object.keys(positions).map((key) => {
-          return (
-            <div
-              key={key}
-              className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
-            >
-              <label htmlFor={`count-${key}`}>{key}</label>
-              <input
-                id={`count-${key}`}
-                name={key}
-                type="number"
-                inputMode="numeric"
-                min="0"
-                max="999"
-                value={positionCount[key].toString()}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                onKeyDown={handleKeyDown}
-                className="border px-1 rounded w-full md:w-12"
-              />
-            </div>
-          );
-        })}
-      </div>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={data}
           margin={{
             top: 16,
-            right: 24,
-            left: 24,
+            right: 16,
+            left: 16,
             bottom: 16,
           }}
         >

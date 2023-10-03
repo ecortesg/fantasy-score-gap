@@ -26,11 +26,11 @@ function Dashboard() {
   if (statsQuery.status === "loading") return <LoadingSpinner />;
 
   if (statsQuery.status === "error") {
-    return <p className="p-5">{JSON.stringify(statsQuery.error)}</p>;
+    return <p className="p-4">{JSON.stringify(statsQuery.error)}</p>;
   }
   if (statsQuery.data.length === 0) {
     return (
-      <h1 className="text-center text-xl font-bold p-5">
+      <h1 className="text-center text-xl font-bold p-4">
         No data
         <br />
         Please select another week or season
@@ -46,14 +46,14 @@ function Dashboard() {
   );
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-12 xl:grid-rows-2 gap-5 p-5 h-full xl:h-screen">
+    <div className="grid grid-cols-1 xl:grid-cols-12 xl:grid-rows-2 gap-6 p-6 h-full xl:h-screen">
       <div className="bg-white xl:col-span-9 xl:row-span-1 rounded-xl shadow-xl z-20 h-[500px] xl:h-auto">
         <Graph data={fpts_rank} />
       </div>
       <div className="bg-white xl:col-span-3 xl:row-span-1 rounded-xl shadow-xl h-[500px] xl:h-auto">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white xl:col-span-12 xl:row-span-1 rounded-xl shadow-xl h-[500px] xl:h-auto ">
+      <div className="bg-white xl:col-span-12 xl:row-span-1 rounded-xl shadow-xl h-[500px] xl:h-auto">
         <Table data={fpts} />
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { useMultipageForm } from "../hooks/useMultipageForm";
 import CategoryLink from "./CategoryLink";
-import Root from "./Root";
 import SettingsPage from "./SettingsPage";
 import PresetsPage from "./PresetsPage";
 import {
@@ -18,7 +17,7 @@ import { IoMdArrowBack } from "react-icons/io";
 
 function Sidebar({ openSidebar }) {
   const { tab, goTo, isRoot } = useMultipageForm({
-    root: <Root />,
+    root: <h2 className="text-center text-lg font-bold h-14 p-4">Settings</h2>,
     presets: <PresetsPage />,
     passing: <SettingsPage title="Passing" fields={PASSING} />,
     rushing: <SettingsPage title="Rushing" fields={RUSHING} />,
@@ -44,13 +43,13 @@ function Sidebar({ openSidebar }) {
         !openSidebar ? "-translate-x-full" : ""
       }`}
     >
-      <div className="2xl:sticky top-0 2xl:top-12 overflow-y-auto py-5">
+      <div className="2xl:sticky top-0 2xl:top-12 overflow-y-auto">
         <div className="flex justify-center relative">
           {!isRoot && (
             <IoMdArrowBack
               size={28}
               onClick={() => goTo("root")}
-              className="absolute left-4 cursor-pointer"
+              className="absolute left-4 top-4 cursor-pointer"
             />
           )}
         </div>

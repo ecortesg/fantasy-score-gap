@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 function ToggleSwitch({ toggleSwitch, isChecked }) {
   return (
     <div
