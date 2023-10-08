@@ -12,6 +12,7 @@ import {
   SPECIAL_TEAMS_PLAYER,
   MISC,
   BONUS,
+  IDP,
 } from "../data/fields_data";
 import { IoMdArrowBack } from "react-icons/io";
 
@@ -35,6 +36,7 @@ function Sidebar({ openSidebar }) {
     ),
     misc: <SettingsPage title="Misc" fields={MISC} />,
     bonus: <SettingsPage title="Bonus" fields={BONUS} />,
+    idp: <SettingsPage title="IDP" fields={IDP} />,
   });
 
   return (
@@ -43,7 +45,7 @@ function Sidebar({ openSidebar }) {
         !openSidebar ? "-translate-x-full" : ""
       }`}
     >
-      <div className="2xl:sticky top-0 2xl:top-12 overflow-y-auto">
+      <div className="2xl:sticky top-0 2xl:top-14 overflow-y-auto">
         <div className="flex justify-center relative">
           {!isRoot && (
             <IoMdArrowBack
@@ -90,6 +92,7 @@ function Sidebar({ openSidebar }) {
             />
             <CategoryLink label="Misc" onClickFunction={() => goTo("misc")} />
             <CategoryLink label="Bonus" onClickFunction={() => goTo("bonus")} />
+            <CategoryLink label="IDP" onClickFunction={() => goTo("idp")} />
           </div>
         )}
       </div>

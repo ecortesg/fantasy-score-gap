@@ -1,31 +1,23 @@
 import {
-  LineChart,
-  Line,
+  ScatterChart,
+  Scatter,
   XAxis,
   YAxis,
+  ZAxis,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Symbols,
+  Surface,
 } from "recharts";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import { countNonZeroProperties } from "../utils";
 
 function Graph({ data }) {
   const [settings, toggleLine, positions] = useDashboardSettingsStore(
     (state) => [state.settings, state.toggleLine, state.positions]
   );
-
-  function countNonZeroProperties(obj) {
-    let count = 0;
-
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key) && obj[key] > 0) {
-        count++;
-      }
-    }
-
-    return count;
-  }
 
   const gridColsVariants = {
     0: "",
@@ -35,13 +27,16 @@ function Graph({ data }) {
     4: "grid-cols-4",
     5: "grid-cols-5",
     6: "grid-cols-6",
+    7: "grid-cols-7",
+    8: "grid-cols-8",
+    9: "grid-cols-9",
   };
 
   const renderLegend = (props) => {
     const { payload } = props;
     return (
       <ul
-        className={`grid grid-rows-2 ${
+        className={`grid gap-y-4 md:gap-y-0 grid-rows-2 ${
           gridColsVariants[countNonZeroProperties(positions)]
         } mt-4 gap-1 text-sm`}
       >
@@ -59,7 +54,24 @@ function Graph({ data }) {
               onChange={(e) => toggleLine(e.target.name)}
               className="w-3 h-4"
             />
-            <label htmlFor={`line-${entry.value}`}>{entry.value}</label>
+            <label
+              className="flex flex-col md:flex-row items-center"
+              htmlFor={`line-${entry.value}`}
+            >
+              <div className="flex flex-col sm:flex-row sm:gap-1">
+                <p>{settings[entry.value].position}</p>
+                <p>{settings[entry.value].league}</p>
+              </div>
+              <Surface width={20} height={10}>
+                <Symbols
+                  cx={10}
+                  cy={5}
+                  type={entry.type}
+                  size={50}
+                  fill={entry.color}
+                />
+              </Surface>
+            </label>
           </li>
         ))}
       </ul>
@@ -69,7 +81,7 @@ function Graph({ data }) {
   return (
     <>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+        <ScatterChart
           data={data}
           margin={{
             top: 16,
@@ -80,6 +92,7 @@ function Graph({ data }) {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
+            name="Rank"
             dataKey="rank"
             type="number"
             label={{
@@ -87,7 +100,7 @@ function Graph({ data }) {
               position: "insideBottom",
               offset: -10,
             }}
-            padding={{ left: 20, right: 20 }}
+            padding={{ left: 16, right: 16 }}
             domain={["minData", "maxData"]}
             tickCount={Math.ceil(data.length / 2)}
           />
@@ -101,7 +114,13 @@ function Graph({ data }) {
             }}
             tickCount={10}
           />
-          <Tooltip />
+          <ZAxis range={[50, 51]} /> {/* To change dot size */}
+          <Tooltip
+            // To hide "1" in tooltip
+            labelFormatter={() => {
+              return "";
+            }}
+          />
           <Legend
             align="center"
             verticalAlign="bottom"
@@ -110,19 +129,22 @@ function Graph({ data }) {
           {Object.keys(settings).map((key) => {
             if (positions[settings[key].position] > 0) {
               return (
-                <Line
+                <Scatter
+                  line
                   key={key}
-                  type="linear"
-                  dot={false}
                   dataKey={key}
-                  stroke={settings[key].color}
-                  strokeWidth={2}
+                  name={key}
+                  data={data[key]}
+                  shape={settings[key].shape}
+                  legendType={settings[key].shape}
+                  fill={settings[key].color}
                   hide={!settings[key].lineVisible}
+                  isAnimationActive={false}
                 />
               );
             }
           })}
-        </LineChart>
+        </ScatterChart>
       </ResponsiveContainer>
     </>
   );

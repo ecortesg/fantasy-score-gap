@@ -513,3 +513,90 @@ export const BONUS = [
     label: "1st Down Bonus-QB",
   },
 ];
+
+export const IDP = [
+  {
+    id: "idp_def_td",
+    label: "IDP TD",
+  },
+  {
+    id: "idp_sack",
+    label: "Sack",
+  },
+  {
+    id: "idp_sack_yd",
+    label: "Sack Yards",
+  },
+  {
+    id: "idp_qb_hit",
+    label: "Hit on QB",
+  },
+  {
+    id: "idp_tkl",
+    label: "Tackle",
+  },
+  {
+    id: "idp_tkl_loss",
+    label: "Tackle For Loss",
+  },
+  {
+    id: "idp_blk_kick",
+    label: "Blocked Punt, PAT or FG",
+  },
+  {
+    id: "idp_int",
+    label: "Interception",
+  },
+  {
+    id: "idp_int_ret_yd",
+    label: "Int Return Yards",
+  },
+  {
+    id: "idp_fum_rec",
+    label: "Fumble Recovery",
+  },
+  {
+    id: "idp_fum_ret_yd",
+    label: "Fumble Return Yards",
+  },
+  {
+    id: "idp_ff",
+    label: "Forced Fumble",
+  },
+  {
+    id: "idp_safe",
+    label: "Safety",
+  },
+  {
+    id: "idp_tkl_ast",
+    label: "Assisted Tackle",
+  },
+  {
+    id: "idp_tkl_solo",
+    label: "Solo Tackle",
+  },
+  {
+    id: "idp_pass_def",
+    label: "Pass Defended",
+  },
+  {
+    id: "bonus_tkl_10p",
+    label: "10+ Tackle Bonus",
+  },
+  {
+    id: "bonus_sack_2p",
+    label: "2+ Sack Bonus",
+  },
+  {
+    id: "idp_pass_def_3p",
+    label: "3+ Pass Defended Bonus",
+  },
+  {
+    id: "bonus_def_int_td_50p",
+    label: "50+ Yard Interception Return TD Bonus",
+  },
+  {
+    id: "bonus_def_fum_td_50p",
+    label: "50+ Yard Fumble Return Bonus",
+  },
+];

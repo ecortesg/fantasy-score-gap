@@ -169,7 +169,7 @@ function PositionFilter({ handlePositionChange }) {
 
   return (
     <div
-      className="flex gap-2 shrink-0"
+      className="flex gap-2 shrink-0 flex-wrap justify-center"
       onChange={(e) => handlePositionChange(e.target.value)}
     >
       <div key="ALL">
