@@ -11,11 +11,27 @@ import {
 import ToggleSwitch from "./ToggleSwitch";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import SummaryTable from "./SummaryTable";
+import { countNonZeroProperties } from "../utils";
 
 function Diagram({ data }) {
-  const [showSummaryTable, toggleSummaryTable] = useDashboardSettingsStore(
-    (state) => [state.showSummaryTable, state.toggleSummaryTable]
-  );
+  const [showSummaryTable, toggleSummaryTable, positions] =
+    useDashboardSettingsStore((state) => [
+      state.showSummaryTable,
+      state.toggleSummaryTable,
+      state.positions,
+    ]);
+
+  const angleOptions = {
+    1: 30,
+    2: 30,
+    3: 30,
+    4: 45,
+    5: 55,
+    6: 60,
+    7: 65,
+    8: 68,
+    9: 71,
+  };
 
   return (
     <>
@@ -43,14 +59,16 @@ function Diagram({ data }) {
               data={data}
               margin={{
                 top: 16,
-                right: 24,
-                left: 24,
+                right: 16,
+                left: 16,
                 bottom: 16,
               }}
             >
               <PolarGrid />
               <PolarAngleAxis dataKey="position" />
-              <PolarRadiusAxis angle={60} />
+              <PolarRadiusAxis
+                angle={angleOptions[countNonZeroProperties(positions)]}
+              />
               <Tooltip />
               <Legend />
               <Radar
