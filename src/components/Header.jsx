@@ -43,7 +43,7 @@ function Header() {
   }
 
   return (
-    <div className="h-auto xl:h-14 bg-white flex flex-col xl:flex-row justify-between items-center text-sm py-2 px-6 gap-2">
+    <div className="h-auto xl:h-14 bg-white flex flex-col xl:flex-row justify-between items-center py-2 px-6 gap-2">
       <div className="flex gap-4">
         <select
           name="season"
@@ -84,7 +84,7 @@ function Header() {
           <option value={18}>Week 18</option>
         </select>
       </div>
-      <div className="flex flex-wrap justify-center gap-2 xl:gap-4 text-sm">
+      <div className="flex flex-wrap justify-center gap-2 xl:gap-4">
         {Object.keys(positions).map((key) => {
           return (
             <div
