@@ -53,7 +53,7 @@ function Dashboard() {
       <div className="bg-white xl:col-span-3 xl:row-span-1 rounded-xl shadow-xl h-[500px] xl:h-auto">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white xl:col-span-12 xl:row-span-1 rounded-xl shadow-xl h-[800px] xl:h-auto">
+      <div className="bg-white xl:col-span-12 xl:row-span-1 rounded-xl shadow-xl h-[80vh] xl:h-auto">
         <Table data={fpts} />
       </div>
     </div>
