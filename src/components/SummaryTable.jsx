@@ -75,8 +75,13 @@ function SummaryTable({ data }) {
             ))}
           </thead>
           <tbody className="overflow-y-auto">
-            {table.getRowModel().rows.map((row) => (
-              <tr className="border-b hover:bg-slate-100" key={row.id}>
+            {table.getRowModel().rows.map((row, index) => (
+              <tr
+                className={`border-b hover:bg-slate-200 ${
+                  index % 2 === 0 ? "bg-slate-100" : ""
+                }`}
+                key={row.id}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <td className="whitespace-nowrap" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

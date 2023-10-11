@@ -10,6 +10,9 @@ import {
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 
 function Table({ data }) {
+  const positions = useDashboardSettingsStore((state) => state.positions);
+  const [activePill, setActivePill] = useState("");
+
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
 
@@ -92,6 +95,7 @@ function Table({ data }) {
 
   function handlePositionChange(value) {
     positionColumn.setFilterValue(value);
+    setActivePill(value);
   }
 
   function handlePlayerChange(value) {
@@ -105,7 +109,28 @@ function Table({ data }) {
           column={playerColumn}
           handlePlayerChange={handlePlayerChange}
         />
-        <PositionFilter handlePositionChange={handlePositionChange} />
+        <div className="flex gap-2 shrink-0 flex-wrap justify-center">
+          <PositionFilterPill
+            key="ALL"
+            label="ALL"
+            position=""
+            activePill={activePill}
+            handlePositionChange={handlePositionChange}
+          />
+          {Object.keys(positions).map((position) => {
+            if (positions[position] > 0) {
+              return (
+                <PositionFilterPill
+                  key={position}
+                  label={position}
+                  position={position}
+                  activePill={activePill}
+                  handlePositionChange={handlePositionChange}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
@@ -146,8 +171,13 @@ function Table({ data }) {
             ))}
           </thead>
           <tbody className="overflow-auto">
-            {table.getRowModel().rows.map((row) => (
-              <tr className="border-b hover:bg-slate-100" key={row.id}>
+            {table.getRowModel().rows.map((row, index) => (
+              <tr
+                className={`border-b hover:bg-slate-200 ${
+                  index % 2 === 0 ? "bg-slate-100" : ""
+                }`}
+                key={row.id}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <td className="whitespace-nowrap" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -164,41 +194,22 @@ function Table({ data }) {
 
 export default Table;
 
-function PositionFilter({ handlePositionChange }) {
-  const positions = useDashboardSettingsStore((state) => state.positions);
-
+function PositionFilterPill({
+  activePill,
+  position,
+  label,
+  handlePositionChange,
+}) {
   return (
     <div
-      className="flex gap-2 shrink-0 flex-wrap justify-center"
-      onChange={(e) => handlePositionChange(e.target.value)}
+      className={`${
+        activePill === position
+          ? "bg-blue-500 text-white"
+          : "hover:bg-slate-200"
+      } rounded-full w-12 cursor-pointer text-center`}
+      onClick={() => handlePositionChange(position)}
     >
-      <div key="ALL">
-        <input
-          type="radio"
-          id="ALL"
-          name="position"
-          value=""
-          defaultChecked={true}
-          className="mx-1"
-        ></input>
-        <label htmlFor="ALL">ALL</label>
-      </div>
-      {Object.keys(positions).map((key) => {
-        if (positions[key] > 0) {
-          return (
-            <div key={key}>
-              <input
-                type="radio"
-                id={`filter_${key}`}
-                name="position"
-                value={key}
-                className="mx-1"
-              ></input>
-              <label htmlFor={`filter_${key}`}>{key}</label>
-            </div>
-          );
-        }
-      })}
+      {label}
     </div>
   );
 }
