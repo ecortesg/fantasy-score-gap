@@ -139,7 +139,6 @@ function Graph({ data }) {
                   legendType={settings[key].shape}
                   fill={settings[key].color}
                   hide={!settings[key].lineVisible}
-                  isAnimationActive={false}
                 />
               );
             }
