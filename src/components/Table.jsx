@@ -23,6 +23,11 @@ function Table({ data }) {
       header: "Player",
       size: 200,
     }),
+    columnHelper.accessor((row) => row.team, {
+      id: "team",
+      header: "Team",
+      size: 80,
+    }),
     columnHelper.accessor((row) => row.position, {
       id: "position",
       header: "Position",
