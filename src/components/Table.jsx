@@ -163,11 +163,13 @@ function Table({ data }) {
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
-                        )}
-                        {{
-                          asc: " ↑",
-                          desc: " ↓",
-                        }[header.column.getIsSorted()] ?? null}
+                        )}{" "}
+                        {header.column.getCanSort()
+                          ? {
+                              asc: "↑",
+                              desc: "↓",
+                            }[header.column.getIsSorted()] ?? "↑↓"
+                          : ""}
                       </div>
                     )}
                   </th>

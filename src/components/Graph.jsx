@@ -90,7 +90,7 @@ function Graph({ data }) {
             bottom: 16,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid />
           <XAxis
             name="Rank"
             dataKey="rank"
@@ -120,6 +120,7 @@ function Graph({ data }) {
             labelFormatter={() => {
               return "";
             }}
+            cursor={{ strokeDasharray: "3 3" }}
           />
           <Legend
             align="center"
@@ -130,7 +131,7 @@ function Graph({ data }) {
             if (positions[settings[key].position] > 0) {
               return (
                 <Scatter
-                  line
+                  line={{ strokeWidth: 2 }}
                   key={key}
                   dataKey={key}
                   name={key}
