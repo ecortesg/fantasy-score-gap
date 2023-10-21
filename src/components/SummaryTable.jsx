@@ -6,6 +6,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 function SummaryTable({ data }) {
   const [sorting, setSorting] = useState([]);
@@ -54,7 +55,7 @@ function SummaryTable({ data }) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer p-1"
+                            ? "cursor-pointer p-1 flex items-center justify-center"
                             : "",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
@@ -65,9 +66,11 @@ function SummaryTable({ data }) {
                         )}{" "}
                         {header.column.getCanSort()
                           ? {
-                              asc: "↑",
-                              desc: "↓",
-                            }[header.column.getIsSorted()] ?? "↑↓"
+                              asc: <FaSortUp className="h-3" />,
+                              desc: <FaSortDown className="h-3" />,
+                            }[header.column.getIsSorted()] ?? (
+                              <FaSort className="h-3" />
+                            )
                           : ""}
                       </div>
                     )}

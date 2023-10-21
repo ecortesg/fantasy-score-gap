@@ -8,6 +8,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 function Table({ data }) {
   const positions = useDashboardSettingsStore((state) => state.positions);
@@ -26,17 +27,17 @@ function Table({ data }) {
     columnHelper.accessor((row) => row.team, {
       id: "team",
       header: "Team",
-      size: 80,
+      size: 120,
     }),
     columnHelper.accessor((row) => row.position, {
       id: "position",
       header: "Position",
-      size: 80,
+      size: 120,
     }),
     columnHelper.accessor((row) => row.stats.gp, {
       id: "games",
       header: "Games",
-      size: 80,
+      size: 120,
     }),
     columnHelper.group({
       id: "league_1",
@@ -44,19 +45,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank1", {
           header: "Rank",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("position_rank1", {
           header: "Pos Rank",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("fpts1", {
           header: "FPts",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("fpts_per_game1", {
           header: "FPts/G",
-          size: 80,
+          size: 120,
         }),
       ],
     }),
@@ -66,19 +67,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank2", {
           header: "Rank",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("position_rank2", {
           header: "Pos Rank",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("fpts2", {
           header: "FPts",
-          size: 80,
+          size: 120,
         }),
         columnHelper.accessor("fpts_per_game2", {
           header: "FPts/G",
-          size: 80,
+          size: 120,
         }),
       ],
     }),
@@ -155,7 +156,7 @@ function Table({ data }) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer py-1"
+                            ? "cursor-pointer py-1 flex items-center justify-center"
                             : "border-b border-black mx-1 py-1",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
@@ -166,9 +167,11 @@ function Table({ data }) {
                         )}{" "}
                         {header.column.getCanSort()
                           ? {
-                              asc: "↑",
-                              desc: "↓",
-                            }[header.column.getIsSorted()] ?? "↑↓"
+                              asc: <FaSortUp className="h-3" />,
+                              desc: <FaSortDown className="h-3" />,
+                            }[header.column.getIsSorted()] ?? (
+                              <FaSort className="h-3" />
+                            )
                           : ""}
                       </div>
                     )}
