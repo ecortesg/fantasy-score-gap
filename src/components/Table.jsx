@@ -253,7 +253,7 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
       />
       {value !== "" && (
         <VscClose
-          className="absolute right-1 top-[3px] h-7 w-7 bg-white rounded-full hover:bg-slate-200"
+          className="absolute right-1 top-[3px] h-7 w-7 bg-white rounded-full hover:bg-slate-200 cursor-default"
           onClick={() => setValue("")}
         />
       )}
