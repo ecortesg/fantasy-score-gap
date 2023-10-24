@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import { VscClose } from "react-icons/vsc";
 
 function Table({ data }) {
   const positions = useDashboardSettingsStore((state) => state.positions);
@@ -241,13 +242,21 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
   }, [value]);
 
   return (
-    <input
-      id="filter_player"
-      className="border rounded px-2 py-1"
-      type="text"
-      placeholder="Find player"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div className="relative">
+      <input
+        id="filter_player"
+        className="border rounded pl-2 pr-8 py-1"
+        type="text"
+        placeholder="Find player"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      {value !== "" && (
+        <VscClose
+          className="absolute right-1 top-[3px] h-7 w-7 bg-white rounded-full hover:bg-slate-200"
+          onClick={() => setValue("")}
+        />
+      )}
+    </div>
   );
 }
