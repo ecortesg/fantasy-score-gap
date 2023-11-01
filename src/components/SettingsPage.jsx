@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import {
+  useLeague1Store,
+  useLeague2Store,
+} from "../store/scoringSettingsStore";
 
 function SettingsPage({ title, fields }) {
   const [settings1, updateSettings1] = useLeague1Store((state) => [

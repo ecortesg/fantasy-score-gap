@@ -52,14 +52,13 @@ function Header() {
           onChange={handleChange1}
           className="border rounded bg-slate-200 font-bold px-2 py-1"
         >
-          {Array.from(
-            { length: 2022 - 2020 + 1 },
-            (_, index) => 2020 + index
-          ).map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
+          {Array.from({ length: 2022 - 2020 + 1 }, (_, index) => 2020 + index)
+            .map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))
+            .reverse()}
         </select>
         <select
           name="week"

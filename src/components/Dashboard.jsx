@@ -5,7 +5,10 @@ import Table from "./Table";
 import Graph from "./Graph";
 import Diagram from "./Diagram";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
-import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import {
+  useLeague1Store,
+  useLeague2Store,
+} from "../store/scoringSettingsStore";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import { LoadingSpinner } from "./LoadingSpinner";
 

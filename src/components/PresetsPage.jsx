@@ -1,5 +1,8 @@
 import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
-import { useLeague1Store, useLeague2Store } from "../store/leagueSettingsStore";
+import {
+  useLeague1Store,
+  useLeague2Store,
+} from "../store/scoringSettingsStore";
 
 function PresetsPage() {
   const updateSettings1 = useLeague1Store((state) => state.updateSettings);
