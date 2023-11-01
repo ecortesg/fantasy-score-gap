@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   ScatterChart,
   Scatter,
@@ -13,11 +15,21 @@ import {
 } from "recharts";
 import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
 import { countNonZeroProperties } from "../utils";
+import { GRAPH_LEGEND_SETTINGS } from "../data/positions_data";
 
 function Graph({ data }) {
-  const [settings, toggleLine, positions] = useDashboardSettingsStore(
-    (state) => [state.settings, state.toggleLine, state.positions]
+  const [series, setSeries] = useState(
+    GRAPH_LEGEND_SETTINGS.reduce((obj, { key }) => {
+      obj[key] = true;
+      return obj;
+    }, {})
   );
+
+  function toggleSeries(key) {
+    setSeries({ ...series, [key]: !series[key] });
+  }
+
+  const positions = useDashboardSettingsStore((state) => state.positions);
 
   const gridColsVariants = {
     0: "",
@@ -40,40 +52,43 @@ function Graph({ data }) {
           gridColsVariants[countNonZeroProperties(positions)]
         } mt-4 gap-1 text-sm`}
       >
-        {payload.map((entry) => (
-          <li
-            className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
-            key={entry.value}
-            style={{ color: entry.color }}
-          >
-            <input
-              id={`line-${entry.value}`}
-              name={entry.value}
-              type="checkbox"
-              checked={settings[entry.value].lineVisible}
-              onChange={(e) => toggleLine(e.target.name)}
-              className="w-3 h-4"
-            />
-            <label
-              className="flex flex-col md:flex-row items-center"
-              htmlFor={`line-${entry.value}`}
+        {payload.map((entry) => {
+          const [position, league] = entry.value.split("-");
+          return (
+            <li
+              className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
+              key={entry.value}
+              style={{ color: entry.color }}
             >
-              <div className="flex flex-col sm:flex-row sm:gap-1">
-                <p>{settings[entry.value].position}</p>
-                <p>{settings[entry.value].league}</p>
-              </div>
-              <Surface width={20} height={10}>
-                <Symbols
-                  cx={10}
-                  cy={5}
-                  type={entry.type}
-                  size={50}
-                  fill={entry.color}
-                />
-              </Surface>
-            </label>
-          </li>
-        ))}
+              <input
+                id={`line-${entry.value}`}
+                name={entry.value}
+                type="checkbox"
+                checked={series[entry.value]}
+                onChange={(e) => toggleSeries(e.target.name)}
+                className="w-3 h-4"
+              />
+              <label
+                className="flex flex-col md:flex-row items-center"
+                htmlFor={`line-${entry.value}`}
+              >
+                <div className="flex flex-col sm:flex-row sm:gap-1">
+                  <p>{position}</p>
+                  <p>{league}</p>
+                </div>
+                <Surface width={20} height={10}>
+                  <Symbols
+                    cx={10}
+                    cy={5}
+                    type={entry.type}
+                    size={50}
+                    fill={entry.color}
+                  />
+                </Surface>
+              </label>
+            </li>
+          );
+        })}
       </ul>
     );
   };
@@ -127,19 +142,19 @@ function Graph({ data }) {
             verticalAlign="bottom"
             content={renderLegend}
           />
-          {Object.keys(settings).map((key) => {
-            if (positions[settings[key].position] > 0) {
+          {GRAPH_LEGEND_SETTINGS.map((elem) => {
+            if (positions[elem.position] > 0) {
               return (
                 <Scatter
                   line={{ strokeWidth: 2 }}
-                  key={key}
-                  dataKey={key}
-                  name={key}
-                  data={data[key]}
-                  shape={settings[key].shape}
-                  legendType={settings[key].shape}
-                  fill={settings[key].color}
-                  hide={!settings[key].lineVisible}
+                  key={elem.key}
+                  dataKey={elem.key}
+                  name={elem.key}
+                  data={data[elem.key]}
+                  shape={elem.shape}
+                  legendType={elem.shape}
+                  fill={elem.color}
+                  hide={!series[elem.key]}
                 />
               );
             }

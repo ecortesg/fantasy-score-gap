@@ -10,131 +10,113 @@ export const DEFAULT_POSITIONS = {
   DB: 0,
 };
 
-export const GRAPH_LEGEND_SETTINGS = {
-  "QB-L1": {
+export const GRAPH_LEGEND_SETTINGS = [
+  {
+    key: "QB-L1",
     color: "#e6194B",
-    lineVisible: true,
     position: "QB",
-    league: "L1",
     shape: "circle",
   },
-  "RB-L1": {
+  {
+    key: "RB-L1",
     color: "#3cb44b",
-    lineVisible: true,
     position: "RB",
-    league: "L1",
     shape: "circle",
   },
-  "WR-L1": {
+  {
+    key: "WR-L1",
     color: "#4363d8",
-    lineVisible: true,
     position: "WR",
-    league: "L1",
     shape: "circle",
   },
-  "TE-L1": {
+  {
+    key: "TE-L1",
     color: "#f58231",
-    lineVisible: true,
     position: "TE",
-    league: "L1",
     shape: "circle",
   },
-  "K-L1": {
+  {
+    key: "K-L1",
     color: "#911eb4",
-    lineVisible: true,
     position: "K",
-    league: "L1",
     shape: "circle",
   },
-  "DEF-L1": {
+  {
+    key: "DEF-L1",
     color: "#9A6324",
-    lineVisible: true,
     position: "DEF",
-    league: "L1",
     shape: "circle",
   },
-  "DL-L1": {
+  {
+    key: "DL-L1",
     color: "#bfef45",
-    lineVisible: true,
     position: "DL",
-    league: "L1",
     shape: "circle",
   },
-  "LB-L1": {
+  {
+    key: "LB-L1",
     color: "#42d4f4",
-    lineVisible: true,
     position: "LB",
-    league: "L1",
     shape: "circle",
   },
-  "DB-L1": {
+  {
+    key: "DB-L1",
     color: "#f032e6",
-    lineVisible: true,
     position: "DB",
-    league: "L1",
     shape: "circle",
   },
-  "QB-L2": {
+  {
+    key: "QB-L2",
     color: "#e6194B",
-    lineVisible: true,
     position: "QB",
-    league: "L2",
     shape: "triangle",
   },
-  "RB-L2": {
+  {
+    key: "RB-L2",
     color: "#3cb44b",
-    lineVisible: true,
     position: "RB",
-    league: "L2",
     shape: "triangle",
   },
-  "WR-L2": {
+  {
+    key: "WR-L2",
     color: "#4363d8 ",
-    lineVisible: true,
     position: "WR",
-    league: "L2",
     shape: "triangle",
   },
-  "TE-L2": {
+  {
+    key: "TE-L2",
     color: "#f58231",
-    lineVisible: true,
     position: "TE",
-    league: "L2",
     shape: "triangle",
   },
-  "K-L2": {
+  {
+    key: "K-L2",
     color: "#911eb4",
-    lineVisible: true,
     position: "K",
-    league: "L2",
     shape: "triangle",
   },
-  "DEF-L2": {
+  {
+    key: "DEF-L2",
     color: "#9A6324",
-    lineVisible: true,
     position: "DEF",
-    league: "L2",
     shape: "triangle",
   },
-  "DL-L2": {
+  {
+    key: "DL-L2",
     color: "#bfef45",
-    lineVisible: true,
     position: "DL",
-    league: "L2",
     shape: "triangle",
   },
-  "LB-L2": {
+  {
+    key: "LB-L2",
     color: "#42d4f4",
-    lineVisible: true,
     position: "LB",
-    league: "L2",
     shape: "triangle",
   },
-  "DB-L2": {
+  {
+    key: "DB-L2",
     color: "#f032e6",
-    lineVisible: true,
     position: "DB",
-    league: "L2",
     shape: "triangle",
   },
-};
+];
