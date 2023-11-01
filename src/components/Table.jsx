@@ -7,12 +7,12 @@ import {
   useReactTable,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import { VscClose } from "react-icons/vsc";
 
 function Table({ data }) {
-  const positions = useDashboardSettingsStore((state) => state.positions);
+  const positions = usePersistentSettingsStore((state) => state.positions);
   const [activePill, setActivePill] = useState("");
 
   const [sorting, setSorting] = useState([]);

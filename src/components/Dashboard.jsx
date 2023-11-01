@@ -9,7 +9,7 @@ import {
   useLeague1Store,
   useLeague2Store,
 } from "../store/scoringSettingsStore";
-import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 function Dashboard() {
@@ -19,7 +19,7 @@ function Dashboard() {
 
   const settingsLeague2 = useLeague2Store((state) => state.settings);
 
-  const positions = useDashboardSettingsStore((state) => state.positions);
+  const positions = usePersistentSettingsStore((state) => state.positions);
 
   const statsQuery = useQuery({
     queryKey: ["stats", queryFilters],

@@ -13,23 +13,20 @@ import {
   Symbols,
   Surface,
 } from "recharts";
-import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import {
+  usePersistentSettingsStore,
+  useSettingsStore,
+} from "../store/dashboardSettingsStore";
 import { countNonZeroProperties } from "../utils";
 import { GRAPH_LEGEND_SETTINGS } from "../data/positions_data";
 
 function Graph({ data }) {
-  const [series, setSeries] = useState(
-    GRAPH_LEGEND_SETTINGS.reduce((obj, { key }) => {
-      obj[key] = true;
-      return obj;
-    }, {})
-  );
+  const positions = usePersistentSettingsStore((state) => state.positions);
 
-  function toggleSeries(key) {
-    setSeries({ ...series, [key]: !series[key] });
-  }
-
-  const positions = useDashboardSettingsStore((state) => state.positions);
+  const [series, toggleSeries] = useSettingsStore((state) => [
+    state.series,
+    state.toggleSeries,
+  ]);
 
   const gridColsVariants = {
     0: "",

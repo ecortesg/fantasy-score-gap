@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Radar,
   RadarChart,
@@ -11,13 +10,19 @@ import {
 } from "recharts";
 import ToggleSwitch from "./ToggleSwitch";
 import SummaryTable from "./SummaryTable";
-import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import {
+  usePersistentSettingsStore,
+  useSettingsStore,
+} from "../store/dashboardSettingsStore";
 import { countNonZeroProperties } from "../utils";
 
 function Diagram({ data }) {
-  const [showTable, setShowTable] = useState(false);
+  const [showSummaryTable, toggleSummaryTable] = useSettingsStore((state) => [
+    state.showSummaryTable,
+    state.toggleSummaryTable,
+  ]);
 
-  const positions = useDashboardSettingsStore((state) => state.positions);
+  const positions = usePersistentSettingsStore((state) => state.positions);
 
   const angleOptions = {
     1: 30,
@@ -38,15 +43,15 @@ function Diagram({ data }) {
           <h3 className="font-bold">Average FPts/Game</h3>
           <div className="flex gap-2 items-center">
             <ToggleSwitch
-              isChecked={showTable}
-              toggleSwitch={() => setShowTable(!showTable)}
+              isChecked={showSummaryTable}
+              toggleSwitch={() => toggleSummaryTable()}
             />
             <p className="text-sm font-semibold">Show Table</p>
           </div>
         </div>
       </div>
       <div className="h-4/5">
-        {showTable ? (
+        {showSummaryTable ? (
           <SummaryTable data={data} />
         ) : (
           <ResponsiveContainer width="100%" height="100%">

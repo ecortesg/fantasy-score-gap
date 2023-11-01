@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
-import { useDashboardSettingsStore } from "../store/dashboardSettingsStore";
+import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
 
 function Header() {
   const [queryFilters, updateQueryFilters] = useQueryFiltersStore((state) => [
@@ -20,7 +20,7 @@ function Header() {
     window.history.replaceState(null, "", url);
   }, [queryFilters]);
 
-  const [positions, updatePositions] = useDashboardSettingsStore((state) => [
+  const [positions, updatePositions] = usePersistentSettingsStore((state) => [
     state.positions,
     state.updatePositions,
   ]);
