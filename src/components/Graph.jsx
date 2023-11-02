@@ -102,7 +102,7 @@ function Graph({ data }) {
             bottom: 16,
           }}
         >
-          <CartesianGrid />
+          <CartesianGrid vertical={false} />
           <XAxis
             name="Rank"
             dataKey="rank"

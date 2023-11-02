@@ -44,7 +44,7 @@ function SummaryTable({ data }) {
 
   return (
     <div className="p-4">
-      <div className="overflow-x-auto">
+      <div className="overflow-auto">
         <table className="w-full">
           <thead className="border-b whitespace-nowrap">
             {table.getHeaderGroups().map((headerGroup) => (
