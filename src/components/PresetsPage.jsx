@@ -60,7 +60,7 @@ export default PresetsPage;
 function PresetButton({ label, values, updateValues }) {
   return (
     <button
-      className="bg-slate-300 hover:bg-slate-200 py-1 rounded shadow mx-4"
+      className="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-900 py-1 rounded shadow mx-4"
       onClick={() => updateValues(values)}
     >
       {label}

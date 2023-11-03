@@ -43,14 +43,14 @@ function Header() {
   }
 
   return (
-    <div className="h-auto xl:h-14 bg-white flex flex-col xl:flex-row justify-between items-center py-2 px-6 gap-2">
+    <div className="h-auto xl:h-14 bg-white dark:bg-slate-700 flex flex-col xl:flex-row justify-between items-center py-2 px-6 gap-4">
       <div className="flex gap-4">
         <select
           name="season"
           id="season"
           value={queryFilters.season}
           onChange={handleChange1}
-          className="border rounded bg-slate-200 font-bold px-2 py-1"
+          className="border rounded bg-slate-200 dark:bg-slate-800 border-none outline-none font-bold px-2 py-1"
         >
           {Array.from({ length: 2022 - 2020 + 1 }, (_, index) => 2020 + index)
             .map((year) => (
@@ -65,7 +65,7 @@ function Header() {
           id="week"
           value={queryFilters.week}
           onChange={handleChange1}
-          className="border rounded bg-slate-200 font-bold px-2 py-1"
+          className="border rounded bg-slate-200 dark:bg-slate-800 border-none outline-none font-bold px-2 py-1"
         >
           <option value="season">Season</option>
           {[...Array(18)].map((_, index) => (
@@ -94,7 +94,7 @@ function Header() {
                 onChange={handleChange2}
                 onBlur={handleBlur}
                 onKeyDown={handleKeyDown}
-                className="border px-2 py-1 rounded w-16"
+                className="px-2 py-1 rounded w-16 bg-slate-200 dark:bg-slate-800 outline-none"
               />
             </div>
           );

@@ -67,7 +67,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague1}
                 onBlur={handleBlurLeague1}
                 onKeyDown={handleKeyDown}
-                className="border rounded py-1 px-2 w-1/2"
+                className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
               />
               <input
                 id={`l2_${field.id}`}
@@ -78,7 +78,7 @@ function SettingsPage({ title, fields }) {
                 onChange={handleChangeLeague2}
                 onBlur={handleBlurLeague2}
                 onKeyDown={handleKeyDown}
-                className="border rounded py-1 px-2 w-1/2"
+                className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
               />
             </div>
           </fieldset>

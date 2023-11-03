@@ -50,13 +50,13 @@ function Dashboard() {
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-12 xl:grid-rows-5 gap-6 p-6 h-full xl:h-screen">
-      <div className="bg-white xl:col-span-9 xl:row-span-2 rounded-xl shadow-xl z-20 h-[500px] xl:h-auto">
+      <div className="bg-white dark:bg-slate-700 xl:col-span-9 xl:row-span-2 rounded-xl shadow-xl z-20 h-[500px] xl:h-auto">
         <Graph data={fpts_rank} />
       </div>
-      <div className="bg-white xl:col-span-3 xl:row-span-2 rounded-xl shadow-xl h-[500px] xl:h-auto">
+      <div className="bg-white dark:bg-slate-700 xl:col-span-3 xl:row-span-2 rounded-xl shadow-xl h-[500px] xl:h-auto">
         <Diagram data={fpts_avg} />
       </div>
-      <div className="bg-white xl:col-span-12 xl:row-span-3 rounded-xl shadow-xl h-[80vh] xl:h-auto">
+      <div className="bg-white dark:bg-slate-700 xl:col-span-12 xl:row-span-3 rounded-xl shadow-xl h-[80vh] xl:h-auto">
         <Table data={fpts} />
       </div>
     </div>

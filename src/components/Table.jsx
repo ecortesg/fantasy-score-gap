@@ -141,7 +141,7 @@ function Table({ data }) {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full table-fixed">
-          <thead className="border-b sticky top-0 bg-white whitespace-nowrap z-10">
+          <thead className="border-b sticky top-0 bg-white dark:bg-slate-700 whitespace-nowrap z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -158,7 +158,7 @@ function Table({ data }) {
                         {...{
                           className: header.column.getCanSort()
                             ? "cursor-pointer py-1 flex items-center justify-center"
-                            : "border-b border-black mx-1 py-1",
+                            : "border-b border-black dark:border-white mx-1 py-1",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >
@@ -184,8 +184,8 @@ function Table({ data }) {
           <tbody className="overflow-auto">
             {table.getRowModel().rows.map((row, index) => (
               <tr
-                className={`border-b hover:bg-slate-200 ${
-                  index % 2 === 0 ? "bg-slate-100" : ""
+                className={`border-b hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-800 ${
+                  index % 2 === 0 ? "bg-slate-100 dark:bg-slate-600" : ""
                 }`}
                 key={row.id}
               >
@@ -215,8 +215,8 @@ function PositionFilterPill({
     <div
       className={`${
         activePill === position
-          ? "bg-blue-500 text-white"
-          : "hover:bg-slate-200"
+          ? "bg-blue-500 dark:bg-indigo-500 text-white"
+          : "hover:bg-slate-200 dark:hover:bg-slate-600"
       } rounded-full w-12 cursor-pointer text-center`}
       onClick={() => handlePositionChange(position)}
     >
@@ -245,7 +245,7 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
     <div className="relative">
       <input
         id="filter_player"
-        className="border rounded pl-2 pr-8 py-1"
+        className="border rounded pl-2 pr-8 py-1 bg-slate-200 dark:bg-slate-800 border-none outline-none"
         type="text"
         placeholder="Find player"
         value={value}
@@ -253,7 +253,7 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
       />
       {value !== "" && (
         <VscClose
-          className="absolute right-1 top-[3px] h-7 w-7 bg-white rounded-full hover:bg-slate-200 cursor-pointer"
+          className="absolute right-1 top-[3px] h-7 w-7 rounded-full cursor-pointer"
           onClick={() => setValue("")}
         />
       )}
