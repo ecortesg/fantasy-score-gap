@@ -1,7 +1,7 @@
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 function Navbar({ openSidebar, onIconClick }) {
   const [theme, changeTheme] = usePersistentSettingsStore((state) => [
@@ -15,6 +15,15 @@ function Navbar({ openSidebar, onIconClick }) {
       htmlClassList.add("dark");
     } else {
       htmlClassList.remove("dark");
+    }
+  }, [theme]);
+
+  useLayoutEffect(() => {
+    const metaThemeColor = document.querySelector("meta[name=theme-color]");
+    if (theme === "dark") {
+      metaThemeColor.setAttribute("content", "#6366f1"); // indigo-500
+    } else {
+      metaThemeColor.setAttribute("content", "#3b82f6"); // blue-500
     }
   }, [theme]);
 
