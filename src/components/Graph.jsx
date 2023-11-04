@@ -21,12 +21,29 @@ import { countNonZeroProperties } from "../utils";
 import { GRAPH_LEGEND_SETTINGS } from "../data/positions_data";
 
 function Graph({ data }) {
-  const positions = usePersistentSettingsStore((state) => state.positions);
+  const [positions, theme] = usePersistentSettingsStore((state) => [
+    state.positions,
+    state.theme,
+  ]);
 
   const [series, toggleSeries] = useSettingsStore((state) => [
     state.series,
     state.toggleSeries,
   ]);
+
+  let textColor;
+  let backgroundColor;
+  let accentColor;
+
+  if (theme === "dark") {
+    textColor = "white";
+    backgroundColor = "#334155"; // slate-700
+    accentColor = "#6366f1"; // indigo-700
+  } else {
+    textColor = "gray";
+    backgroundColor = "white";
+    accentColor = "#3b82f6"; // blue-500
+  }
 
   const gridColsVariants = {
     0: "",
@@ -64,6 +81,9 @@ function Graph({ data }) {
                 checked={series[entry.value]}
                 onChange={(e) => toggleSeries(e.target.name)}
                 className="w-3 h-4"
+                style={{
+                  accentColor: accentColor,
+                }}
               />
               <label
                 className="flex flex-col md:flex-row items-center"
@@ -111,10 +131,12 @@ function Graph({ data }) {
               value: "Positional Rank",
               position: "insideBottom",
               offset: -10,
+              fill: textColor,
             }}
             padding={{ left: 16, right: 16 }}
             domain={["minData", "maxData"]}
             tickCount={Math.ceil(data.length / 2)}
+            stroke={textColor}
           />
           <YAxis
             type="number"
@@ -123,11 +145,17 @@ function Graph({ data }) {
               angle: -90,
               position: "insideLeft",
               offset: 10,
+              fill: textColor,
             }}
             tickCount={10}
+            stroke={textColor}
           />
           <ZAxis range={[50, 51]} /> {/* To change dot size */}
           <Tooltip
+            contentStyle={{
+              backgroundColor: backgroundColor,
+            }}
+            itemStyle={{ color: textColor }}
             // To hide "1" in tooltip
             labelFormatter={() => {
               return "";

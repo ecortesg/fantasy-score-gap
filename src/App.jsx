@@ -8,7 +8,7 @@ function App() {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
-    <main className="grid min-h-screen grid-rows-[56px_auto] bg-slate-200">
+    <main className="grid min-h-screen grid-rows-[56px_auto] bg-slate-200 dark:bg-slate-800 dark:text-white">
       <section className="shadow-sm z-50">
         <Navbar
           openSidebar={openSidebar}

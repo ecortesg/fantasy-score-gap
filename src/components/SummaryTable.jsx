@@ -82,8 +82,8 @@ function SummaryTable({ data }) {
           <tbody className="overflow-y-auto">
             {table.getRowModel().rows.map((row, index) => (
               <tr
-                className={`border-b hover:bg-slate-200 ${
-                  index % 2 === 0 ? "bg-slate-100" : ""
+                className={`border-b hover:bg-slate-200 dark:hover:bg-slate-800 ${
+                  index % 2 === 0 ? "bg-slate-100 dark:bg-slate-600" : ""
                 }`}
                 key={row.id}
               >

@@ -32,6 +32,11 @@ export const usePersistentSettingsStore = create(
         set((state) => ({
           positions: { ...state.positions, ...newSetting },
         })),
+      theme: "light",
+      changeTheme: () =>
+        set((state) => ({
+          theme: state.theme === "light" ? "dark" : "light",
+        })),
     }),
     {
       name: "settings",

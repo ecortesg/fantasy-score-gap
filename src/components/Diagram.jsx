@@ -22,7 +22,21 @@ function Diagram({ data }) {
     state.toggleSummaryTable,
   ]);
 
-  const positions = usePersistentSettingsStore((state) => state.positions);
+  const [positions, theme] = usePersistentSettingsStore((state) => [
+    state.positions,
+    state.theme,
+  ]);
+
+  let textColor;
+  let backgroundColor;
+
+  if (theme === "dark") {
+    textColor = "white";
+    backgroundColor = "#334155"; // slate-700
+  } else {
+    textColor = "gray";
+    backgroundColor = "white";
+  }
 
   const angleOptions = {
     1: 30,
@@ -68,11 +82,12 @@ function Diagram({ data }) {
               }}
             >
               <PolarGrid />
-              <PolarAngleAxis dataKey="position" />
+              <PolarAngleAxis dataKey="position" stroke={textColor} />
               <PolarRadiusAxis
                 angle={angleOptions[countNonZeroProperties(positions)]}
+                stroke={textColor}
               />
-              <Tooltip />
+              <Tooltip contentStyle={{ backgroundColor: backgroundColor }} />
               <Legend />
               <Radar
                 name="League 1"
