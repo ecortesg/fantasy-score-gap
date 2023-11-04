@@ -45,7 +45,7 @@ function Sidebar({ openSidebar }) {
 
   return (
     <div
-      className={`flex flex-col justify-between bg-white dark:bg-slate-700 border-r w-full sm:w-[300px] 2xl:w-full 2xl:sticky top-12 2xl:z-0 z-40 fixed h-[calc(100vh_-_48px)] transition-transform .3s ease-in-out 2xl:translate-x-0 ${
+      className={`flex flex-col justify-between bg-white dark:bg-slate-700 border-r w-full sm:w-[300px] 2xl:w-full 2xl:sticky top-14 2xl:z-0 z-40 fixed h-[calc(100vh_-_48px)] transition-transform .3s ease-in-out 2xl:translate-x-0 ${
         !openSidebar ? "-translate-x-full" : ""
       }`}
     >

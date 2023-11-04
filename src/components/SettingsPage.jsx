@@ -45,7 +45,7 @@ function SettingsPage({ title, fields }) {
   return (
     <>
       <h2 className="text-lg font-bold text-center p-4">{title}</h2>
-      <div className="flex gap-8 justify-end pb-4 mx-8">
+      <div className="flex gap-8 justify-end mx-8">
         <div className="w-1/2 text-center font-bold">
           <p>League 1</p>
         </div>
@@ -53,37 +53,39 @@ function SettingsPage({ title, fields }) {
           <p>League 2</p>
         </div>
       </div>
-      {fields.map((field) => {
-        return (
-          <fieldset className="mx-4 pb-4" key={field.id}>
-            <legend className="block text-sm mb-2">{field.label}</legend>
-            <div className="flex gap-8 justify-end mx-4">
-              <input
-                id={`l1_${field.id}`}
-                name={field.id}
-                type="number"
-                step={field.step || "0.5"}
-                value={valuesLeague1[field.id]}
-                onChange={handleChangeLeague1}
-                onBlur={handleBlurLeague1}
-                onKeyDown={handleKeyDown}
-                className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
-              />
-              <input
-                id={`l2_${field.id}`}
-                name={field.id}
-                type="number"
-                step={field.step || "0.5"}
-                value={valuesLeague2[field.id]}
-                onChange={handleChangeLeague2}
-                onBlur={handleBlurLeague2}
-                onKeyDown={handleKeyDown}
-                className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
-              />
-            </div>
-          </fieldset>
-        );
-      })}
+      <div className="px-4 pt-4 pb-32">
+        {fields.map((field) => {
+          return (
+            <fieldset className="mb-4" key={field.id}>
+              <legend className="block text-sm mb-2">{field.label}</legend>
+              <div className="flex gap-8 justify-end mx-4">
+                <input
+                  id={`l1_${field.id}`}
+                  name={field.id}
+                  type="number"
+                  step={field.step || "0.5"}
+                  value={valuesLeague1[field.id]}
+                  onChange={handleChangeLeague1}
+                  onBlur={handleBlurLeague1}
+                  onKeyDown={handleKeyDown}
+                  className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
+                />
+                <input
+                  id={`l2_${field.id}`}
+                  name={field.id}
+                  type="number"
+                  step={field.step || "0.5"}
+                  value={valuesLeague2[field.id]}
+                  onChange={handleChangeLeague2}
+                  onBlur={handleBlurLeague2}
+                  onKeyDown={handleKeyDown}
+                  className="bg-slate-200 dark:bg-slate-800 outline-none rounded py-1 px-2 w-1/2"
+                />
+              </div>
+            </fieldset>
+          );
+        })}
+      </div>
     </>
   );
 }
