@@ -7,7 +7,7 @@ function CategoryLink({ label, onClickFunction }) {
       onClick={onClickFunction}
     >
       <p>{label}</p>
-      <IoIosArrowForward size={24} />
+      <IoIosArrowForward size={28} />
     </div>
   );
 }

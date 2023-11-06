@@ -43,7 +43,7 @@ function Header() {
   }
 
   return (
-    <div className="h-auto xl:h-14 bg-white dark:bg-slate-700 flex flex-col xl:flex-row justify-between items-center py-2 px-6 gap-4">
+    <div className="h-auto xl:h-14 bg-white dark:bg-slate-700 flex flex-col xl:flex-row justify-between items-center xl:py-2 py-4 xl:px-6 gap-4">
       <div className="flex gap-4">
         <select
           name="season"

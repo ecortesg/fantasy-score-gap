@@ -61,7 +61,7 @@ function Sidebar({ openSidebar }) {
         </div>
         <div>{tab}</div>
         {isRoot && (
-          <div>
+          <div className="pb-32">
             <CategoryLink
               label="Presets"
               onClickFunction={() => goTo("presets")}

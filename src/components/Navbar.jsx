@@ -33,14 +33,14 @@ function Navbar({ openSidebar, onIconClick }) {
         {!openSidebar && (
           <IoMdMenu
             className="cursor-pointer mr-4 2xl:hidden rounded-full"
-            size={32}
+            size={28}
             onClick={onIconClick}
           />
         )}
         {openSidebar && (
           <IoMdClose
             className="cursor-pointer mr-4 2xl:hidden rounded-full"
-            size={32}
+            size={28}
             onClick={onIconClick}
           />
         )}
@@ -61,13 +61,13 @@ function Navbar({ openSidebar, onIconClick }) {
         {theme === "dark" ? (
           <MdOutlineDarkMode
             className="cursor-pointer rounded-full"
-            size={32}
+            size={28}
             onClick={() => changeTheme()}
           />
         ) : (
           <MdOutlineLightMode
             className="cursor-pointer rounded-full"
-            size={32}
+            size={28}
             onClick={() => changeTheme()}
           />
         )}
