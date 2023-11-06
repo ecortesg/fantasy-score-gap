@@ -50,7 +50,7 @@ function Navbar({ openSidebar, onIconClick }) {
         <a
           href="https://ko-fi.com/S6S8QVBNF"
           target="_blank"
-          className="cursor-pointer h-14"
+          className="cursor-pointer h-14 rounded-full"
         >
           <img
             src="kofi-logo.png"
@@ -60,13 +60,13 @@ function Navbar({ openSidebar, onIconClick }) {
         </a>
         {theme === "dark" ? (
           <MdOutlineDarkMode
-            className="cursor-pointer"
+            className="cursor-pointer rounded-full"
             size={32}
             onClick={() => changeTheme()}
           />
         ) : (
           <MdOutlineLightMode
-            className="cursor-pointer"
+            className="cursor-pointer rounded-full"
             size={32}
             onClick={() => changeTheme()}
           />
