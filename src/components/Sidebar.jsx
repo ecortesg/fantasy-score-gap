@@ -55,7 +55,7 @@ function Sidebar({ openSidebar }) {
             <IoMdArrowBack
               size={28}
               onClick={() => goTo("root")}
-              className="absolute left-4 top-4 cursor-pointer"
+              className="absolute left-4 top-4 cursor-pointer rounded-full"
             />
           )}
         </div>
