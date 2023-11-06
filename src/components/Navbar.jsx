@@ -32,14 +32,14 @@ function Navbar({ openSidebar, onIconClick }) {
       <div className="flex">
         {!openSidebar && (
           <IoMdMenu
-            className="cursor-pointer mr-4 2xl:hidden"
+            className="cursor-pointer mr-4 2xl:hidden rounded-full"
             size={32}
             onClick={onIconClick}
           />
         )}
         {openSidebar && (
           <IoMdClose
-            className="cursor-pointer mr-4 2xl:hidden"
+            className="cursor-pointer mr-4 2xl:hidden rounded-full"
             size={32}
             onClick={onIconClick}
           />
@@ -50,12 +50,12 @@ function Navbar({ openSidebar, onIconClick }) {
         <a
           href="https://ko-fi.com/S6S8QVBNF"
           target="_blank"
-          className="cursor-pointer h-14 rounded-full"
+          className="cursor-pointer h-14"
         >
           <img
             src="kofi-logo.png"
             alt="Buy Me a Coffee at ko-fi.com"
-            className="h-full"
+            className="h-full rounded-full"
           />
         </a>
         {theme === "dark" ? (
