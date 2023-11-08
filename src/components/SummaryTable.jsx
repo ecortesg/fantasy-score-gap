@@ -16,18 +16,23 @@ function SummaryTable({ data }) {
     () => [
       columnHelper.accessor("position", {
         header: "Position",
+        size: 100,
       }),
       columnHelper.accessor("avg1", {
         header: "League 1",
+        size: 100,
       }),
       columnHelper.accessor("avg2", {
         header: "League 2",
+        size: 100,
       }),
       columnHelper.accessor("diff", {
         header: "Change",
+        size: 100,
       }),
       columnHelper.accessor("diff_pct", {
         header: "%",
+        size: 100,
       }),
     ],
     []
@@ -44,13 +49,20 @@ function SummaryTable({ data }) {
 
   return (
     <div className="p-4 h-full flex">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto w-full">
         <table className="w-full">
           <thead className="border-b sticky top-0 bg-white dark:bg-slate-700 whitespace-nowrap">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    style={{
+                      width: header.getSize(),
+                      minWidth: header.minSize,
+                    }}
+                  >
                     {header.isPlaceholder ? null : (
                       <div
                         {...{

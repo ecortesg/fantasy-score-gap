@@ -37,11 +37,9 @@ function Graph({ data }) {
 
   if (theme === "dark") {
     textColor = "white";
-    backgroundColor = "#334155"; // slate-700
     accentColor = "#6366f1"; // indigo-700
   } else {
     textColor = "gray";
-    backgroundColor = "white";
     accentColor = "#3b82f6"; // blue-500
   }
 
@@ -114,7 +112,7 @@ function Graph({ data }) {
     const { active, payload } = props;
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-700 border p-2">
+        <div className="bg-white dark:bg-slate-700 border p-2">
           <p>{`${payload[1].name}`}</p>
           <p>{`${payload[1].payload[`${payload[1].name}-NAME`]}`}</p>
           <p>{`${payload[0].name}: ${payload[0].value}`}</p>
