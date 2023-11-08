@@ -52,7 +52,7 @@ function Header() {
           onChange={handleChange1}
           className="border rounded bg-slate-200 dark:bg-slate-800 border-none outline-none font-bold px-2 py-1"
         >
-          {Array.from({ length: 2023 - 2020 + 1 }, (_, index) => 2020 + index)
+          {Array.from({ length: 2022 - 2020 + 1 }, (_, index) => 2020 + index)
             .map((year) => (
               <option key={year} value={year}>
                 {year}
