@@ -43,10 +43,10 @@ function SummaryTable({ data }) {
   });
 
   return (
-    <div className="p-4">
-      <div className="overflow-auto">
+    <div className="p-4 h-full flex">
+      <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="border-b whitespace-nowrap">
+          <thead className="border-b sticky top-0 bg-white dark:bg-slate-700 whitespace-nowrap">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -88,7 +88,7 @@ function SummaryTable({ data }) {
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td className="whitespace-nowrap" key={cell.id}>
+                  <td className="whitespace-nowrap text-center" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

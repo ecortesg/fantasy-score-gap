@@ -28,17 +28,17 @@ function Table({ data }) {
     columnHelper.accessor((row) => row.team, {
       id: "team",
       header: "Team",
-      size: 120,
+      size: 100,
     }),
     columnHelper.accessor((row) => row.position, {
       id: "position",
       header: "Position",
-      size: 120,
+      size: 100,
     }),
     columnHelper.accessor((row) => row.stats.gp, {
       id: "games",
       header: "Games",
-      size: 120,
+      size: 100,
     }),
     columnHelper.group({
       id: "league_1",
@@ -46,19 +46,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank1", {
           header: "Rank",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("position_rank1", {
           header: "Pos Rank",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("fpts1", {
           header: "FPts",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("fpts_per_game1", {
           header: "FPts/G",
-          size: 120,
+          size: 100,
         }),
       ],
     }),
@@ -68,19 +68,19 @@ function Table({ data }) {
       columns: [
         columnHelper.accessor("rank2", {
           header: "Rank",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("position_rank2", {
           header: "Pos Rank",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("fpts2", {
           header: "FPts",
-          size: 120,
+          size: 100,
         }),
         columnHelper.accessor("fpts_per_game2", {
           header: "FPts/G",
-          size: 120,
+          size: 100,
         }),
       ],
     }),
@@ -140,7 +140,7 @@ function Table({ data }) {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full table-fixed">
+        <table className="w-full">
           <thead className="border-b sticky top-0 bg-white dark:bg-slate-700 whitespace-nowrap z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -157,7 +157,7 @@ function Table({ data }) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer py-1 flex items-center justify-center"
+                            ? "cursor-pointer p-1 flex items-center justify-center"
                             : "border-b border-black dark:border-white mx-1 py-1",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
@@ -181,7 +181,7 @@ function Table({ data }) {
               </tr>
             ))}
           </thead>
-          <tbody className="overflow-auto">
+          <tbody className="overflow-y-auto">
             {table.getRowModel().rows.map((row, index) => (
               <tr
                 className={`border-b hover:bg-slate-200 dark:hover:bg-slate-800 border-none ${
@@ -190,7 +190,12 @@ function Table({ data }) {
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td className="whitespace-nowrap" key={cell.id}>
+                  <td
+                    className={`whitespace-nowrap ${
+                      cell.column.id !== "player" ? "text-center" : "text-left"
+                    }`}
+                    key={cell.id}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

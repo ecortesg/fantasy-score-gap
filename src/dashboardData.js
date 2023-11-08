@@ -27,10 +27,16 @@ export function dashboardData(
       rankings.forEach((elem) => {
         if (elem.position_rank1 === i && positions[elem.position] >= i) {
           top[`${elem.position}-L1`] = elem.fpts1;
+          top[
+            `${elem.position}-L1-NAME`
+          ] = `${elem.first_name} ${elem.last_name}`;
         }
 
         if (elem.position_rank2 === i && positions[elem.position] >= i) {
           top[`${elem.position}-L2`] = elem.fpts2;
+          top[
+            `${elem.position}-L2-NAME`
+          ] = `${elem.first_name} ${elem.last_name}`;
         }
       });
 

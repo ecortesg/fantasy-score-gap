@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const initialFilters = {
-  season: new URLSearchParams(window.location.search).get("season") || "2022",
+  season: new URLSearchParams(window.location.search).get("season") || "2023",
   week: new URLSearchParams(window.location.search).get("week") || "season",
 };
 

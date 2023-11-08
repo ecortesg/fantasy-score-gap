@@ -58,7 +58,7 @@ function Graph({ data }) {
     9: "grid-cols-9",
   };
 
-  const renderLegend = (props) => {
+  function CustomLegend(props) {
     const { payload } = props;
     return (
       <ul
@@ -108,7 +108,23 @@ function Graph({ data }) {
         })}
       </ul>
     );
-  };
+  }
+
+  function CustomTooltip(props) {
+    const { active, payload } = props;
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-slate-700 border p-2">
+          <p>{`${payload[1].name}`}</p>
+          <p>{`${payload[1].payload[`${payload[1].name}-NAME`]}`}</p>
+          <p>{`${payload[0].name}: ${payload[0].value}`}</p>
+          <p>{`FPts: ${payload[1].value}`}</p>
+        </div>
+      );
+    }
+
+    return <div>Tooltip</div>; // If I return null, the tooltip doesn't show sometimes. Bug?
+  }
 
   return (
     <>
@@ -150,22 +166,16 @@ function Graph({ data }) {
             tickCount={10}
             stroke={textColor}
           />
-          <ZAxis range={[50, 51]} /> {/* To change dot size */}
+          {/* To change dot size */}
+          <ZAxis range={[50, 51]} />
           <Tooltip
-            contentStyle={{
-              backgroundColor: backgroundColor,
-            }}
-            itemStyle={{ color: textColor }}
-            // To hide "1" in tooltip
-            labelFormatter={() => {
-              return "";
-            }}
+            content={<CustomTooltip />}
             cursor={{ strokeDasharray: "3 3" }}
           />
           <Legend
             align="center"
             verticalAlign="bottom"
-            content={renderLegend}
+            content={<CustomLegend />}
           />
           {GRAPH_LEGEND_SETTINGS.map((elem) => {
             if (positions[elem.position] > 0) {

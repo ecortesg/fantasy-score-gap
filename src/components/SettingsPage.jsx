@@ -53,7 +53,7 @@ function SettingsPage({ title, fields }) {
           <p>League 2</p>
         </div>
       </div>
-      <div className="px-4 pt-4 pb-36">
+      <div className="px-4 pt-4 pb-40">
         {fields.map((field) => {
           return (
             <fieldset className="mb-4" key={field.id}>

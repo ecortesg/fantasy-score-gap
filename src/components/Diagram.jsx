@@ -92,16 +92,16 @@ function Diagram({ data }) {
               <Radar
                 name="League 1"
                 dataKey="avg1"
-                stroke="#14b8a6"
-                fill="#14b8a6"
-                fillOpacity={0.2}
+                stroke="#8b5cf6"
+                fill="#8b5cf6"
+                fillOpacity={0.4}
               />
               <Radar
                 name="League 2"
                 dataKey="avg2"
-                stroke="#8b5cf6"
-                fill="#8b5cf6"
-                fillOpacity={0.2}
+                stroke="#14b8a6"
+                fill="#14b8a6"
+                fillOpacity={0.4}
               />
             </RadarChart>
           </ResponsiveContainer>
