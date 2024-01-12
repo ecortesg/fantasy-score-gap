@@ -5,10 +5,12 @@ const statsApi = axios.create({
 });
 
 export async function getStatistics(queryFilters) {
-  const url =
-    queryFilters.week === "season"
-      ? `/statistics/nfl/${queryFilters.season}/regular`
-      : `/statistics/nfl/${queryFilters.season}/regular/${queryFilters.week}`;
+  const { season, week } = queryFilters;
+  const weekParams = week.split("-");
+
+  const url = weekParams[1]
+    ? `/statistics/nfl/${season}/${weekParams[0]}/${weekParams[1]}`
+    : `/statistics/nfl/${season}/${weekParams[0]}`;
   const res = await statsApi.get(url);
   return res.data;
 }

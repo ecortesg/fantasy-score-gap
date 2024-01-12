@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useQueryFiltersStore } from "../store/queryFiltersStore";
 import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
 
@@ -11,14 +11,6 @@ function Header() {
   function handleChange1(e) {
     updateQueryFilters({ [e.target.id]: e.target.value });
   }
-
-  useEffect(() => {
-    const url = new URL(window.location);
-    Object.keys(queryFilters).forEach((key) => {
-      url.searchParams.set(key, queryFilters[key]);
-    });
-    window.history.replaceState(null, "", url);
-  }, [queryFilters]);
 
   const [positions, updatePositions] = usePersistentSettingsStore((state) => [
     state.positions,
@@ -67,12 +59,17 @@ function Header() {
           onChange={handleChange1}
           className="border rounded bg-slate-200 dark:bg-slate-800 border-none outline-none font-bold px-2 py-1"
         >
-          <option value="season">Season</option>
+          <option value="regular">Season</option>
           {[...Array(18)].map((_, index) => (
-            <option key={index + 1} value={index + 1}>
+            <option key={`regular-${index + 1}`} value={`regular-${index + 1}`}>
               Week {index + 1}
             </option>
           ))}
+          <option value="post">Playoffs</option>
+          <option value="post-1">Wild Card</option>
+          <option value="post-2">Divisional</option>
+          <option value="post-3">Conference</option>
+          <option value="post-4">Super Bowl</option>
         </select>
       </div>
       <div className="flex flex-wrap justify-center gap-2 xl:gap-4">
