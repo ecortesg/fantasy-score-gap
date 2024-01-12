@@ -76,16 +76,16 @@ export function dashboardData(
         );
 
         const avg1 = Number(
-          (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(1)
+          (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(2)
         ); // 0 divided by 0 returns NaN
 
         const avg2 = Number(
-          (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(1)
+          (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(2)
         );
 
-        const diff = Number((avg2 - avg1).toFixed(1));
+        const diff = Number((avg2 - avg1).toFixed(2));
 
-        const diff_pct = Number(((diff / avg1) * 100).toFixed(1));
+        const diff_pct = Number(((diff / avg1) * 100).toFixed(2));
 
         fpts_avg.push({
           position,
@@ -109,10 +109,10 @@ export function dashboardData(
         fpts2 += Number(elem.stats[key]) * settingsLeague2[key];
       }
     }
-    fpts1 = Number(fpts1.toFixed(1));
-    fpts2 = Number(fpts2.toFixed(1));
-    const fpts_per_game1 = Number((fpts1 / elem.stats.gp).toFixed(1));
-    const fpts_per_game2 = Number((fpts2 / elem.stats.gp).toFixed(1));
+    fpts1 = Number(fpts1.toFixed(2));
+    fpts2 = Number(fpts2.toFixed(2));
+    const fpts_per_game1 = Number((fpts1 / elem.stats.gp).toFixed(2));
+    const fpts_per_game2 = Number((fpts2 / elem.stats.gp).toFixed(2));
 
     return { ...elem, fpts1, fpts2, fpts_per_game1, fpts_per_game2 };
   });
