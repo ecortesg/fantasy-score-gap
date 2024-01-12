@@ -7,8 +7,8 @@ const statsApi = axios.create({
 export async function getStatistics(queryFilters) {
   const url =
     queryFilters.week === "season"
-      ? `/statistics/nfl/regular/${queryFilters.season}`
-      : `/statistics/nfl/regular/${queryFilters.season}/${queryFilters.week}`;
+      ? `/statistics/nfl/${queryFilters.season}/regular`
+      : `/statistics/nfl/${queryFilters.season}/regular/${queryFilters.week}`;
   const res = await statsApi.get(url);
   return res.data;
 }
