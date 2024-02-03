@@ -12,7 +12,7 @@ export const useLeague1Store = create(
         })),
     }),
     {
-      name: "league1",
+      name: "FSG_LEAGUE1_SCORING",
       storage: createJSONStorage(() => localStorage),
     }
   )
@@ -28,7 +28,7 @@ export const useLeague2Store = create(
         })),
     }),
     {
-      name: "league2",
+      name: "FSG_LEAGUE2_SCORING",
       storage: createJSONStorage(() => localStorage),
     }
   )

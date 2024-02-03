@@ -39,7 +39,7 @@ export const usePersistentSettingsStore = create(
         })),
     }),
     {
-      name: "settings",
+      name: "FSG_SETTINGS",
       storage: createJSONStorage(() => localStorage),
     }
   )
