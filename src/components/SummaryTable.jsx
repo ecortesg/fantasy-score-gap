@@ -60,7 +60,6 @@ function SummaryTable({ data }) {
                     colSpan={header.colSpan}
                     style={{
                       width: header.getSize(),
-                      minWidth: header.minSize,
                     }}
                   >
                     {header.isPlaceholder ? null : (
