@@ -29,17 +29,17 @@ function Navbar({ openSidebar, onIconClick }) {
 
   return (
     <nav className="bg-blue-500 dark:bg-indigo-500 text-white flex items-center justify-between w-full fixed px-4 shadow-sm h-14">
-      <div className="flex">
+      <div className="flex gap-4">
         {!openSidebar && (
           <IoMdMenu
-            className="cursor-pointer mr-4 2xl:hidden rounded-full"
+            className="cursor-pointer 2xl:hidden rounded-full"
             size={28}
             onClick={onIconClick}
           />
         )}
         {openSidebar && (
           <IoMdClose
-            className="cursor-pointer mr-4 2xl:hidden rounded-full"
+            className="cursor-pointer 2xl:hidden rounded-full"
             size={28}
             onClick={onIconClick}
           />
