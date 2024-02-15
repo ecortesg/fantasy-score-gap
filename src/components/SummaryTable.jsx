@@ -90,7 +90,7 @@ function SummaryTable({ data }) {
               </tr>
             ))}
           </thead>
-          <tbody className="overflow-y-auto">
+          <tbody>
             {table.getRowModel().rows.map((row, index) => (
               <tr
                 className={`border-b hover:bg-slate-200 dark:hover:bg-slate-800 border-none ${
