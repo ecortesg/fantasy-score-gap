@@ -1,5 +1,5 @@
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
 import { useEffect, useLayoutEffect } from "react";
 
@@ -59,13 +59,13 @@ function Navbar({ openSidebar, onIconClick }) {
           />
         </a>
         {theme === "dark" ? (
-          <MdOutlineDarkMode
+          <MdDarkMode
             className="cursor-pointer rounded-full"
             size={28}
             onClick={() => changeTheme()}
           />
         ) : (
-          <MdOutlineLightMode
+          <MdLightMode
             className="cursor-pointer rounded-full"
             size={28}
             onClick={() => changeTheme()}
