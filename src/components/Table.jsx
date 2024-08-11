@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import {
   createColumnHelper,
   flexRender,
@@ -6,19 +6,19 @@ import {
   getSortedRowModel,
   useReactTable,
   getFilteredRowModel,
-} from "@tanstack/react-table";
-import { usePersistentSettingsStore } from "../store/dashboardSettingsStore";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
-import { VscClose } from "react-icons/vsc";
+} from "@tanstack/react-table"
+import { usePersistentSettingsStore } from "../store/dashboardSettingsStore"
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa"
+import { VscClose } from "react-icons/vsc"
 
 function Table({ data }) {
-  const positions = usePersistentSettingsStore((state) => state.positions);
-  const [activePill, setActivePill] = useState("");
+  const positions = usePersistentSettingsStore((state) => state.positions)
+  const [activePill, setActivePill] = useState("")
 
-  const [sorting, setSorting] = useState([]);
-  const [columnFilters, setColumnFilters] = useState([]);
+  const [sorting, setSorting] = useState([])
+  const [columnFilters, setColumnFilters] = useState([])
 
-  const columnHelper = createColumnHelper();
+  const columnHelper = createColumnHelper()
   const columns = [
     columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
       id: "player",
@@ -48,7 +48,7 @@ function Table({ data }) {
           header: "Rank",
           size: 100,
         }),
-        columnHelper.accessor("position_rank1", {
+        columnHelper.accessor("positionRank1", {
           header: "Pos Rank",
           size: 100,
         }),
@@ -56,7 +56,7 @@ function Table({ data }) {
           header: "FPts",
           size: 100,
         }),
-        columnHelper.accessor("fpts_per_game1", {
+        columnHelper.accessor("fptsPerGame1", {
           header: "FPts/G",
           size: 100,
         }),
@@ -70,7 +70,7 @@ function Table({ data }) {
           header: "Rank",
           size: 100,
         }),
-        columnHelper.accessor("position_rank2", {
+        columnHelper.accessor("positionRank2", {
           header: "Pos Rank",
           size: 100,
         }),
@@ -78,13 +78,13 @@ function Table({ data }) {
           header: "FPts",
           size: 100,
         }),
-        columnHelper.accessor("fpts_per_game2", {
+        columnHelper.accessor("fptsPerGame2", {
           header: "FPts/G",
           size: 100,
         }),
       ],
     }),
-  ];
+  ]
 
   const table = useReactTable({
     data,
@@ -95,18 +95,18 @@ function Table({ data }) {
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-  });
+  })
 
-  const playerColumn = table.getColumn("player");
-  const positionColumn = table.getColumn("position");
+  const playerColumn = table.getColumn("player")
+  const positionColumn = table.getColumn("position")
 
   function handlePositionChange(value) {
-    positionColumn.setFilterValue(value);
-    setActivePill(value);
+    positionColumn.setFilterValue(value)
+    setActivePill(value)
   }
 
   function handlePlayerChange(value) {
-    playerColumn.setFilterValue(value);
+    playerColumn.setFilterValue(value)
   }
 
   return (
@@ -125,7 +125,7 @@ function Table({ data }) {
             handlePositionChange={handlePositionChange}
           />
           {Object.keys(positions).map((position) => {
-            if (positions[position] > 0) {
+            if (positions[position].start > 0 && positions[position].end > 0) {
               return (
                 <PositionFilterPill
                   key={position}
@@ -134,7 +134,7 @@ function Table({ data }) {
                   activePill={activePill}
                   handlePositionChange={handlePositionChange}
                 />
-              );
+              )
             }
           })}
         </div>
@@ -204,10 +204,10 @@ function Table({ data }) {
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default Table;
+export default Table
 
 function PositionFilterPill({
   activePill,
@@ -226,24 +226,24 @@ function PositionFilterPill({
     >
       {label}
     </div>
-  );
+  )
 }
 
 function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
-  const columnFilterValue = column.getFilterValue() ?? "";
-  const [value, setValue] = useState(columnFilterValue);
+  const columnFilterValue = column.getFilterValue() ?? ""
+  const [value, setValue] = useState(columnFilterValue)
 
   useEffect(() => {
-    setValue(columnFilterValue);
-  }, [columnFilterValue]);
+    setValue(columnFilterValue)
+  }, [columnFilterValue])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      handlePlayerChange(value);
-    }, debounce);
+      handlePlayerChange(value)
+    }, debounce)
 
-    return () => clearTimeout(timeout);
-  }, [value]);
+    return () => clearTimeout(timeout)
+  }, [value])
 
   return (
     <div className="relative">
@@ -262,5 +262,5 @@ function PlayerFilter({ column, handlePlayerChange, debounce = 500 }) {
         />
       )}
     </div>
-  );
+  )
 }

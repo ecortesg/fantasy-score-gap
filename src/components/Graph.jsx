@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 
 import {
   ScatterChart,
@@ -12,35 +12,35 @@ import {
   ResponsiveContainer,
   Symbols,
   Surface,
-} from "recharts";
+} from "recharts"
 import {
   usePersistentSettingsStore,
   useSettingsStore,
-} from "../store/dashboardSettingsStore";
-import { countNonZeroProperties } from "../utils";
-import { GRAPH_LEGEND_SETTINGS } from "../data/positions_data";
+} from "../store/dashboardSettingsStore"
+import { countNonZeroProperties } from "../utils"
+import { GRAPH_LEGEND_SETTINGS } from "../data/positions_data"
 
 function Graph({ data }) {
   const [positions, theme] = usePersistentSettingsStore((state) => [
     state.positions,
     state.theme,
-  ]);
+  ])
 
   const [series, toggleSeries] = useSettingsStore((state) => [
     state.series,
     state.toggleSeries,
-  ]);
+  ])
 
-  let textColor;
-  let backgroundColor;
-  let accentColor;
+  let textColor
+  let backgroundColor
+  let accentColor
 
   if (theme === "dark") {
-    textColor = "white";
-    accentColor = "#6366f1"; // indigo-700
+    textColor = "white"
+    accentColor = "#6366f1" // indigo-700
   } else {
-    textColor = "gray";
-    accentColor = "#3b82f6"; // blue-500
+    textColor = "gray"
+    accentColor = "#3b82f6" // blue-500
   }
 
   const gridColsVariants = {
@@ -54,10 +54,10 @@ function Graph({ data }) {
     7: "grid-cols-7",
     8: "grid-cols-8",
     9: "grid-cols-9",
-  };
+  }
 
   function CustomLegend(props) {
-    const { payload } = props;
+    const { payload } = props
     return (
       <ul
         className={`grid gap-y-4 md:gap-y-0 grid-rows-2 ${
@@ -65,7 +65,7 @@ function Graph({ data }) {
         } mt-4 gap-1 text-sm`}
       >
         {payload.map((entry) => {
-          const [position, league] = entry.value.split("-");
+          const [position, league] = entry.value.split("-")
           return (
             <li
               className="grid text-center md:flex justify-center gap-x-1 place-items-center content-start"
@@ -102,14 +102,14 @@ function Graph({ data }) {
                 </Surface>
               </label>
             </li>
-          );
+          )
         })}
       </ul>
-    );
+    )
   }
 
   function CustomTooltip(props) {
-    const { active, payload } = props;
+    const { active, payload } = props
     if (active && payload && payload.length) {
       return (
         <div className="bg-white dark:bg-slate-700 border p-2">
@@ -118,10 +118,10 @@ function Graph({ data }) {
           <p>{`${payload[0].name}: ${payload[0].value}`}</p>
           <p>{`FPts: ${payload[1].value}`}</p>
         </div>
-      );
+      )
     }
 
-    return <div>Tooltip</div>; // If I return null, the tooltip doesn't show sometimes. Bug?
+    return <div>Tooltip</div> // If I return null, the tooltip doesn't show sometimes. Bug?
   }
 
   return (
@@ -176,7 +176,7 @@ function Graph({ data }) {
             content={<CustomLegend />}
           />
           {GRAPH_LEGEND_SETTINGS.map((elem) => {
-            if (positions[elem.position] > 0) {
+            if (positions[elem.position].start > 0) {
               return (
                 <Scatter
                   line={{ strokeWidth: 2 }}
@@ -189,13 +189,13 @@ function Graph({ data }) {
                   fill={elem.color}
                   hide={!series[elem.key]}
                 />
-              );
+              )
             }
           })}
         </ScatterChart>
       </ResponsiveContainer>
     </>
-  );
+  )
 }
 
-export default Graph;
+export default Graph

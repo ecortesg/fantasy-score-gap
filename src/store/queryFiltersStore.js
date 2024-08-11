@@ -1,9 +1,9 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 const initialFilters = {
   season: "2023",
   week: "regular",
-};
+}
 
 export const useQueryFiltersStore = create((set) => ({
   queryFilters: initialFilters,
@@ -11,4 +11,4 @@ export const useQueryFiltersStore = create((set) => ({
     set((state) => ({
       queryFilters: { ...state.queryFilters, ...newFilter },
     })),
-}));
+}))

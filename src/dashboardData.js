@@ -5,67 +5,87 @@ export function dashboardData(
   positions
 ) {
   function getPositionalRank(sortedData, league) {
-    let pos_counter = {};
-    const fpts_rank = sortedData.map((elem, index) => {
-      let position_rank = pos_counter[elem.position] + 1 || 1;
-      pos_counter = { ...pos_counter, [elem.position]: position_rank };
+    let posCounter = {}
+    const fptsRank = sortedData.map((elem, index) => {
+      let positionRank = posCounter[elem.position] + 1 || 1
+      posCounter = { ...posCounter, [elem.position]: positionRank }
       return {
         ...elem,
-        [`position_rank${league}`]: position_rank,
+        [`positionRank${league}`]: positionRank,
         [`rank${league}`]: index + 1,
-      };
-    });
-    return fpts_rank;
+      }
+    })
+    return fptsRank
   }
 
   function getTopPlayers(rankings, positions) {
-    const num_players = Math.max(...Object.values(positions));
+    const minRank = Math.min(
+      ...Object.values(positions)
+        .map((pos) => pos.start)
+        .filter((value) => value !== 0)
+    )
+    const maxRank = Math.max(...Object.values(positions).map((pos) => pos.end))
 
-    const fpts_rank = [];
-    for (let i = 1; i <= num_players; i++) {
-      const top = {};
+    const fptsRank = []
+    for (let i = minRank; i <= maxRank; i++) {
+      const top = {}
       rankings.forEach((elem) => {
-        if (elem.position_rank1 === i && positions[elem.position] >= i) {
-          top[`${elem.position}-L1`] = elem.fpts1;
+        if (
+          elem.positionRank1 === i &&
+          positions[elem.position].start <= i &&
+          positions[elem.position].end >= i
+        ) {
+          top[`${elem.position}-L1`] = elem.fpts1
           top[
             `${elem.position}-L1-NAME`
-          ] = `${elem.first_name} ${elem.last_name}`;
+          ] = `${elem.first_name} ${elem.last_name}`
         }
 
-        if (elem.position_rank2 === i && positions[elem.position] >= i) {
-          top[`${elem.position}-L2`] = elem.fpts2;
+        if (
+          elem.positionRank2 === i &&
+          positions[elem.position].start <= i &&
+          positions[elem.position].end >= i
+        ) {
+          top[`${elem.position}-L2`] = elem.fpts2
           top[
             `${elem.position}-L2-NAME`
-          ] = `${elem.first_name} ${elem.last_name}`;
+          ] = `${elem.first_name} ${elem.last_name}`
         }
-      });
+      })
 
-      fpts_rank.push({ rank: i, ...top });
+      fptsRank.push({ rank: i, ...top })
     }
-    return fpts_rank;
+    return fptsRank
   }
 
   function getAvgPointsPosition(rankings, positions) {
-    let fpts_avg = [];
+    let fptsAvg = []
 
     for (const position in positions) {
-      const positionRank = positions[position];
+      const positionStart = positions[position].start
+      const positionEnd = positions[position].end
 
-      if (positionRank > 0) {
+      if (positionEnd > 0 && positionStart > 0) {
         const combinedScores = rankings.reduce(
           (acc, obj) => {
             if (obj.position === position) {
-              if (obj.position_rank1 <= positionRank) {
-                acc.avg1Sum += obj.fpts_per_game1;
-                acc.avg1Count += 1;
+              if (
+                obj.positionRank1 <= positionEnd &&
+                obj.positionRank1 >= positionStart
+              ) {
+                acc.avg1Sum += obj.fptsPerGame1
+                acc.avg1Count += 1
               }
 
-              if (obj.position_rank2 <= positionRank) {
-                acc.avg2Sum += obj.fpts_per_game2;
-                acc.avg2Count += 1;
+              if (
+                obj.positionRank2 <= positionEnd &&
+                obj.positionRank2 >= positionStart
+              ) {
+                acc.avg2Sum += obj.fptsPerGame2
+                acc.avg2Count += 1
               }
             }
-            return acc;
+            return acc
           },
           {
             avg1Sum: 0,
@@ -73,64 +93,64 @@ export function dashboardData(
             avg2Sum: 0,
             avg2Count: 0,
           }
-        );
+        )
 
         const avg1 = Number(
           (combinedScores.avg1Sum / combinedScores.avg1Count || 0).toFixed(2)
-        ); // 0 divided by 0 returns NaN
+        ) // 0 divided by 0 returns NaN
 
         const avg2 = Number(
           (combinedScores.avg2Sum / combinedScores.avg2Count || 0).toFixed(2)
-        );
+        )
 
-        const diff = Number((avg2 - avg1).toFixed(2));
+        const diff = Number((avg2 - avg1).toFixed(2))
 
-        const diff_pct = Number(((diff / avg1) * 100).toFixed(2));
+        const diffPct = Number(((diff / avg1) * 100).toFixed(2))
 
-        fpts_avg.push({
+        fptsAvg.push({
           position,
           avg1,
           avg2,
           diff,
-          diff_pct,
-        });
+          diffPct,
+        })
       }
     }
 
-    return fpts_avg;
+    return fptsAvg
   }
 
   let fpts = stats.map((elem) => {
-    let fpts1 = 0;
-    let fpts2 = 0;
+    let fpts1 = 0
+    let fpts2 = 0
     for (const key in elem.stats) {
       if (key in settingsLeague1) {
-        fpts1 += Number(elem.stats[key]) * settingsLeague1[key];
-        fpts2 += Number(elem.stats[key]) * settingsLeague2[key];
+        fpts1 += Number(elem.stats[key]) * settingsLeague1[key]
+        fpts2 += Number(elem.stats[key]) * settingsLeague2[key]
       }
     }
-    fpts1 = Number(fpts1.toFixed(2));
-    fpts2 = Number(fpts2.toFixed(2));
-    const fpts_per_game1 = Number((fpts1 / elem.stats.gp).toFixed(2));
-    const fpts_per_game2 = Number((fpts2 / elem.stats.gp).toFixed(2));
+    fpts1 = Number(fpts1.toFixed(2))
+    fpts2 = Number(fpts2.toFixed(2))
+    const fptsPerGame1 = Number((fpts1 / elem.stats.gp).toFixed(2))
+    const fptsPerGame2 = Number((fpts2 / elem.stats.gp).toFixed(2))
 
-    return { ...elem, fpts1, fpts2, fpts_per_game1, fpts_per_game2 };
-  });
+    return { ...elem, fpts1, fpts2, fptsPerGame1, fptsPerGame2 }
+  })
 
-  fpts = fpts.filter((elem) => positions[elem.position] > 0);
+  fpts = fpts.filter((elem) => positions[elem.position].end > 0)
 
-  fpts.sort((a, b) => b.fpts1 - a.fpts1);
-  fpts = getPositionalRank(fpts, 1);
-  fpts.sort((a, b) => b.fpts2 - a.fpts2);
-  fpts = getPositionalRank(fpts, 2);
+  fpts.sort((a, b) => b.fpts1 - a.fpts1)
+  fpts = getPositionalRank(fpts, 1)
+  fpts.sort((a, b) => b.fpts2 - a.fpts2)
+  fpts = getPositionalRank(fpts, 2)
 
-  const fpts_rank = getTopPlayers(fpts, positions);
+  const fptsRank = getTopPlayers(fpts, positions)
 
-  const fpts_avg = getAvgPointsPosition(fpts, positions);
+  const fptsAvg = getAvgPointsPosition(fpts, positions)
 
   return {
     fpts,
-    fpts_rank,
-    fpts_avg,
-  };
+    fptsRank,
+    fptsAvg,
+  }
 }

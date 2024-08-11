@@ -1,14 +1,14 @@
 export const DEFAULT_POSITIONS = {
-  QB: 16,
-  RB: 36,
-  WR: 36,
-  TE: 16,
-  K: 16,
-  DEF: 16,
-  DL: 0,
-  LB: 0,
-  DB: 0,
-};
+  QB: { start: 1, end: 16 },
+  RB: { start: 1, end: 36 },
+  WR: { start: 1, end: 36 },
+  TE: { start: 1, end: 16 },
+  K: { start: 1, end: 16 },
+  DEF: { start: 1, end: 16 },
+  DL: { start: 0, end: 0 },
+  LB: { start: 0, end: 0 },
+  DB: { start: 0, end: 0 },
+}
 
 export const GRAPH_LEGEND_SETTINGS = [
   {
@@ -119,4 +119,4 @@ export const GRAPH_LEGEND_SETTINGS = [
     position: "DB",
     shape: "triangle",
   },
-];
+]

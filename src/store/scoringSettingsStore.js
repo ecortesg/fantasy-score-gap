@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { SLEEPER } from "../data/presets_data";
+import { create } from "zustand"
+import { persist, createJSONStorage } from "zustand/middleware"
+import { SLEEPER } from "../data/presets_data"
 
 export const useLeague1Store = create(
   persist(
@@ -14,9 +14,10 @@ export const useLeague1Store = create(
     {
       name: "FSG_LEAGUE1_SCORING",
       storage: createJSONStorage(() => localStorage),
+      version: 0,
     }
   )
-);
+)
 
 export const useLeague2Store = create(
   persist(
@@ -30,6 +31,7 @@ export const useLeague2Store = create(
     {
       name: "FSG_LEAGUE2_SCORING",
       storage: createJSONStorage(() => localStorage),
+      versio: 0,
     }
   )
-);
+)
