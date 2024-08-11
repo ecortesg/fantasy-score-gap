@@ -21,10 +21,14 @@ export function dashboardData(
   function getTopPlayers(rankings, positions) {
     const minRank = Math.min(
       ...Object.values(positions)
+        .filter((pos) => pos.start > 0 && pos.start <= pos.end)
         .map((pos) => pos.start)
-        .filter((value) => value !== 0)
     )
-    const maxRank = Math.max(...Object.values(positions).map((pos) => pos.end))
+    const maxRank = Math.max(
+      ...Object.values(positions)
+        .filter((pos) => pos.start > 0 && pos.start <= pos.end)
+        .map((pos) => pos.end)
+    )
 
     const fptsRank = []
     for (let i = minRank; i <= maxRank; i++) {
@@ -137,7 +141,11 @@ export function dashboardData(
     return { ...elem, fpts1, fpts2, fptsPerGame1, fptsPerGame2 }
   })
 
-  fpts = fpts.filter((elem) => positions[elem.position].end > 0)
+  fpts = fpts.filter(
+    (elem) =>
+      positions[elem.position].start > 0 &&
+      positions[elem.position].start <= positions[elem.position].end
+  )
 
   fpts.sort((a, b) => b.fpts1 - a.fpts1)
   fpts = getPositionalRank(fpts, 1)

@@ -125,7 +125,10 @@ function Table({ data }) {
             handlePositionChange={handlePositionChange}
           />
           {Object.keys(positions).map((position) => {
-            if (positions[position].start > 0 && positions[position].end > 0) {
+            if (
+              positions[position].start > 0 &&
+              positions[position].start <= positions[position].end
+            ) {
               return (
                 <PositionFilterPill
                   key={position}

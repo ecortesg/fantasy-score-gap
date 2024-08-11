@@ -176,7 +176,10 @@ function Graph({ data }) {
             content={<CustomLegend />}
           />
           {GRAPH_LEGEND_SETTINGS.map((elem) => {
-            if (positions[elem.position].start > 0) {
+            if (
+              positions[elem.position].start > 0 &&
+              positions[elem.position].start <= positions[elem.position].end
+            ) {
               return (
                 <Scatter
                   line={{ strokeWidth: 2 }}
