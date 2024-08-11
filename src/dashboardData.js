@@ -69,7 +69,7 @@ export function dashboardData(
       const positionStart = positions[position].start
       const positionEnd = positions[position].end
 
-      if (positionEnd > 0 && positionStart > 0) {
+      if (positionStart > 0 && positionStart <= positionEnd) {
         const combinedScores = rankings.reduce(
           (acc, obj) => {
             if (obj.position === position) {
