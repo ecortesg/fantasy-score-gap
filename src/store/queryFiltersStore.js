@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 const initialFilters = {
-  season: "2023",
+  season: "2024",
   week: "regular",
 }
 

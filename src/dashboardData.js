@@ -143,6 +143,7 @@ export function dashboardData(
 
   fpts = fpts.filter(
     (elem) =>
+      positions[elem.position] && // Filter out other positions like LS (Long Snapper)
       positions[elem.position].start > 0 &&
       positions[elem.position].start <= positions[elem.position].end
   )
