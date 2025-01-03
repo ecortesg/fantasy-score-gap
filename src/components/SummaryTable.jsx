@@ -1,17 +1,17 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo } from "react"
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+} from "@tanstack/react-table"
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa"
 
 function SummaryTable({ data }) {
-  const [sorting, setSorting] = useState([]);
+  const [sorting, setSorting] = useState([])
 
-  const columnHelper = createColumnHelper();
+  const columnHelper = createColumnHelper()
   const columns = useMemo(
     () => [
       columnHelper.accessor("position", {
@@ -30,13 +30,13 @@ function SummaryTable({ data }) {
         header: "Change",
         size: 100,
       }),
-      columnHelper.accessor("diff_pct", {
+      columnHelper.accessor("diffPct", {
         header: "%",
         size: 100,
       }),
     ],
     []
-  );
+  )
 
   const table = useReactTable({
     data,
@@ -45,7 +45,7 @@ function SummaryTable({ data }) {
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-  });
+  })
 
   return (
     <div className="p-4 h-full flex">
@@ -109,7 +109,7 @@ function SummaryTable({ data }) {
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default SummaryTable;
+export default SummaryTable

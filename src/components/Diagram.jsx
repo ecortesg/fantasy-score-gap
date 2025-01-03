@@ -7,35 +7,35 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import ToggleSwitch from "./ToggleSwitch";
-import SummaryTable from "./SummaryTable";
+} from "recharts"
+import ToggleSwitch from "./ToggleSwitch"
+import SummaryTable from "./SummaryTable"
 import {
   usePersistentSettingsStore,
   useSettingsStore,
-} from "../store/dashboardSettingsStore";
-import { countNonZeroProperties } from "../utils";
+} from "../store/dashboardSettingsStore"
+import { countNonZeroProperties } from "../utils"
 
 function Diagram({ data }) {
   const [showSummaryTable, toggleSummaryTable] = useSettingsStore((state) => [
     state.showSummaryTable,
     state.toggleSummaryTable,
-  ]);
+  ])
 
   const [positions, theme] = usePersistentSettingsStore((state) => [
     state.positions,
     state.theme,
-  ]);
+  ])
 
-  let textColor;
-  let backgroundColor;
+  let textColor
+  let backgroundColor
 
   if (theme === "dark") {
-    textColor = "white";
-    backgroundColor = "#334155"; // slate-700
+    textColor = "white"
+    backgroundColor = "#334155" // slate-700
   } else {
-    textColor = "gray";
-    backgroundColor = "white";
+    textColor = "gray"
+    backgroundColor = "white"
   }
 
   const angleOptions = {
@@ -48,7 +48,7 @@ function Diagram({ data }) {
     7: 65,
     8: 68,
     9: 71,
-  };
+  }
 
   return (
     <>
@@ -108,7 +108,7 @@ function Diagram({ data }) {
         )}
       </div>
     </>
-  );
+  )
 }
 
-export default Diagram;
+export default Diagram
