@@ -1,7 +1,7 @@
-import { useMultipageForm } from "../hooks/useMultipageForm";
-import CategoryLink from "./CategoryLink";
-import SettingsPage from "./SettingsPage";
-import PresetsPage from "./PresetsPage";
+import { useMultipageForm } from "../hooks/useMultipageForm"
+import CategoryLink from "./CategoryLink"
+import SettingsTab from "./SettingsTab"
+import PresetsTab from "./PresetsTab"
 import {
   PASSING,
   RUSHING,
@@ -13,8 +13,8 @@ import {
   MISC,
   BONUS,
   IDP,
-} from "../data/fields_data";
-import { IoMdArrowBack } from "react-icons/io";
+} from "../data/fields_data"
+import { IoMdArrowBack } from "react-icons/io"
 
 function Sidebar({ openSidebar }) {
   const { tab, goTo, isRoot } = useMultipageForm({
@@ -23,25 +23,20 @@ function Sidebar({ openSidebar }) {
         Scoring Settings
       </h2>
     ),
-    presets: <PresetsPage />,
-    passing: <SettingsPage title="Passing" fields={PASSING} />,
-    rushing: <SettingsPage title="Rushing" fields={RUSHING} />,
-    receiving: <SettingsPage title="Receiving" fields={RECEIVING} />,
-    kicking: <SettingsPage title="Kicking" fields={KICKING} />,
-    defense: <SettingsPage title="Defense" fields={DEFENSE} />,
-    special_teams: (
-      <SettingsPage title="Special Teams" fields={SPECIAL_TEAMS} />
-    ),
+    presets: <PresetsTab />,
+    passing: <SettingsTab title="Passing" fields={PASSING} />,
+    rushing: <SettingsTab title="Rushing" fields={RUSHING} />,
+    receiving: <SettingsTab title="Receiving" fields={RECEIVING} />,
+    kicking: <SettingsTab title="Kicking" fields={KICKING} />,
+    defense: <SettingsTab title="Defense" fields={DEFENSE} />,
+    special_teams: <SettingsTab title="Special Teams" fields={SPECIAL_TEAMS} />,
     special_teams_player: (
-      <SettingsPage
-        title="Special Teams Player"
-        fields={SPECIAL_TEAMS_PLAYER}
-      />
+      <SettingsTab title="Special Teams Player" fields={SPECIAL_TEAMS_PLAYER} />
     ),
-    misc: <SettingsPage title="Misc" fields={MISC} />,
-    bonus: <SettingsPage title="Bonus" fields={BONUS} />,
-    idp: <SettingsPage title="IDP" fields={IDP} />,
-  });
+    misc: <SettingsTab title="Misc" fields={MISC} />,
+    bonus: <SettingsTab title="Bonus" fields={BONUS} />,
+    idp: <SettingsTab title="IDP" fields={IDP} />,
+  })
 
   return (
     <div
@@ -101,7 +96,7 @@ function Sidebar({ openSidebar }) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

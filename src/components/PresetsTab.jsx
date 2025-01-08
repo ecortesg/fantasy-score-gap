@@ -1,12 +1,9 @@
-import { SLEEPER, ESPN, YAHOO } from "../data/presets_data";
-import {
-  useLeague1Store,
-  useLeague2Store,
-} from "../store/scoringSettingsStore";
+import { SLEEPER, ESPN, YAHOO } from "../data/presets_data"
+import { useLeague1Store, useLeague2Store } from "../store/scoringSettingsStore"
 
-function PresetsPage() {
-  const updateSettings1 = useLeague1Store((state) => state.updateSettings);
-  const updateSettings2 = useLeague2Store((state) => state.updateSettings);
+function PresetsTab() {
+  const updateSettings1 = useLeague1Store((state) => state.updateSettings)
+  const updateSettings2 = useLeague2Store((state) => state.updateSettings)
 
   return (
     <>
@@ -52,18 +49,18 @@ function PresetsPage() {
         />
       </div>
     </>
-  );
+  )
 }
 
-export default PresetsPage;
+export default PresetsTab
 
 function PresetButton({ label, values, updateValues }) {
   return (
     <button
-      className="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-900 py-1 rounded shadow mx-4"
+      className="dark:bg-slate-200 bg-slate-800 dark:hover:bg-slate-300 hover:bg-slate-900 py-1 rounded shadow mx-4 text-white dark:text-black"
       onClick={() => updateValues(values)}
     >
       {label}
     </button>
-  );
+  )
 }

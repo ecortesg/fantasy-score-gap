@@ -1,8 +1,8 @@
 export const PASSING = [
   {
     id: "pass_yd",
-    label: "Points Per Passing Yard",
-    step: "0.01",
+    label: "Passing Yards",
+    displayInverse: true,
   },
   {
     id: "pass_td",
@@ -52,12 +52,13 @@ export const PASSING = [
     id: "pass_td_50p",
     label: "50+ Yard Pass TD Bonus",
   },
-];
+]
 
 export const RUSHING = [
   {
     id: "rush_yd",
-    label: "Points Per Rushing Yard",
+    label: "Rushing Yards",
+    displayInverse: true,
   },
   {
     id: "rush_td",
@@ -87,7 +88,7 @@ export const RUSHING = [
     id: "rush_td_50p",
     label: "50+ Yard Rush TD Bonus",
   },
-];
+]
 
 export const RECEIVING = [
   {
@@ -96,7 +97,8 @@ export const RECEIVING = [
   },
   {
     id: "rec_yd",
-    label: "Points Per Receiving Yard",
+    label: "Receiving Yards",
+    displayInverse: true,
   },
   {
     id: "rec_td",
@@ -154,7 +156,7 @@ export const RECEIVING = [
     id: "bonus_rec_te",
     label: "Reception Bonus-TE",
   },
-];
+]
 
 export const KICKING = [
   {
@@ -221,7 +223,7 @@ export const KICKING = [
     id: "xpmiss",
     label: "PAT Missed",
   },
-];
+]
 
 export const DEFENSE = [
   {
@@ -318,7 +320,8 @@ export const DEFENSE = [
   },
   {
     id: "sack_yd",
-    label: "Points Per Sack Yard",
+    label: "Sack Yards",
+    displayInverse: true,
   },
   {
     id: "int",
@@ -326,7 +329,8 @@ export const DEFENSE = [
   },
   {
     id: "int_ret_yd",
-    label: "Points Per INT Return Yard",
+    label: "INT Return Yards",
+    displayInverse: true,
   },
   {
     id: "fum_rec",
@@ -334,7 +338,8 @@ export const DEFENSE = [
   },
   {
     id: "fum_ret_yd",
-    label: "Points Per Fumble Return Yard",
+    label: "Fumble Return Yards",
+    displayInverse: true,
   },
   {
     id: "tkl_loss",
@@ -378,13 +383,15 @@ export const DEFENSE = [
   },
   {
     id: "fg_ret_yd",
-    label: "Points Per Missed FG Return Yard",
+    label: "Missed FG Return Yards",
+    displayInverse: true,
   },
   {
     id: "blk_kick_ret_yd",
-    label: "Points Per Blocked Kick Return Yard",
+    label: "Blocked Kick Return Yards",
+    displayInverse: true,
   },
-];
+]
 
 export const SPECIAL_TEAMS = [
   {
@@ -405,13 +412,15 @@ export const SPECIAL_TEAMS = [
   },
   {
     id: "def_pr_yd",
-    label: "Points Per Punt Return Yard",
+    label: "Punt Return Yards",
+    displayInverse: true,
   },
   {
     id: "def_kr_yd",
-    label: "Points Per Kick Return Yard",
+    label: "Kick Return Yards",
+    displayInverse: true,
   },
-];
+]
 
 export const SPECIAL_TEAMS_PLAYER = [
   {
@@ -432,13 +441,15 @@ export const SPECIAL_TEAMS_PLAYER = [
   },
   {
     id: "pr_yd",
-    label: "Points Per Punt Return Yard",
+    label: "Punt Return Yards",
+    displayInverse: true,
   },
   {
     id: "kr_yd",
-    label: "Points Per Kick Return Yard",
+    label: "Kick Return Yards",
+    displayInverse: true,
   },
-];
+]
 
 export const MISC = [
   {
@@ -453,7 +464,7 @@ export const MISC = [
     id: "fum_rec_td",
     label: "Fumble Recovery TD",
   },
-];
+]
 
 export const BONUS = [
   {
@@ -512,7 +523,7 @@ export const BONUS = [
     id: "bonus_fd_qb",
     label: "1st Down Bonus-QB",
   },
-];
+]
 
 export const IDP = [
   {
@@ -526,6 +537,7 @@ export const IDP = [
   {
     id: "idp_sack_yd",
     label: "Sack Yards",
+    displayInverse: true,
   },
   {
     id: "idp_qb_hit",
@@ -549,7 +561,8 @@ export const IDP = [
   },
   {
     id: "idp_int_ret_yd",
-    label: "Int Return Yards",
+    label: "INT Return Yards",
+    displayInverse: true,
   },
   {
     id: "idp_fum_rec",
@@ -558,6 +571,7 @@ export const IDP = [
   {
     id: "idp_fum_ret_yd",
     label: "Fumble Return Yards",
+    displayInverse: true,
   },
   {
     id: "idp_ff",
@@ -597,6 +611,6 @@ export const IDP = [
   },
   {
     id: "bonus_def_fum_td_50p",
-    label: "50+ Yard Fumble Return Bonus",
+    label: "50+ Yard Fumble Return TD Bonus",
   },
-];
+]
