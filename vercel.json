@@ -4,7 +4,7 @@
     {
       "source": "/(.*)",
       "destination": "https://www.fantasyquery.com/tools/scoring-visualizer",
-      "permanent": false
+      "permanent": true
     }
   ]
 }
